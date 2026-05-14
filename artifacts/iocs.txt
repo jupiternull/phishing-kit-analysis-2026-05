@@ -33,5 +33,5 @@ DOM HASHES (same URL, one hour apart -- evasion proof):
   dd9888e12663dd93590cc7d5e1ff3a60d94bd42d953d6cfd6043ddf3fbaad9e1
 
 FILE HASHES:
-  phishing-kit-annotated.html:         [PENDING]
-  secondary-worker-annotated.html:     [PENDING]
+  phishing-kit-annotated.html:         35f8ef269005a98d3d22858c23bc2eb132493139d56bdfedf54e68f73c92e065
+  secondary-worker-annotated.html:     041454c46b48dd968df0da4e41fa4c20521c0f7b48684350dc786277749b7125
