@@ -1,0 +1,108 @@
+{
+  "campaign": "[REDACTED-CF-NAMESPACE] BEC Campaign",
+  "generated": "2026-05-13",
+  "note": "Attacker identifiers redacted. Full identifiers on file with law enforcement.",
+  "scans": [
+    {
+      "scan_id": "b670dfad-e7fe-442c-a5b1-24b931069bf5",
+      "worker": "WORKER-1",
+      "scanned_url": "https://[REDACTED-WORKER-1]/?ei=[REDACTED-EI]",
+      "scanned_at": "2026-05-12T22:41:00.051Z",
+      "verdict": {
+        "malicious": false,
+        "hasVerdicts": false,
+        "categories": [],
+        "tags": []
+      },
+      "response_size_bytes": 24895,
+      "tls": {
+        "subject": "[REDACTED-WORKER-1]",
+        "protocol": "TLS 1.3",
+        "cipher": "AES_256_GCM",
+        "valid_from": "2026-05-11T22:41:00.000Z",
+        "valid_to": "2027-05-11T22:41:00.000Z",
+        "issuer": ""
+      },
+      "resources_loaded": [
+        "https://[REDACTED-WORKER-1]/?ei=[REDACTED-EI]",
+        "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js",
+        "https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516",
+        "https://logincdn.msftauth.net/shared/5/images/solve_captcha_white_be191d6e17d0b842754c.png",
+        "https://[REDACTED-WORKER-1]/favicon.ico"
+      ],
+      "notes": "Worker 1 (base-page-5pex). Page title: 'International SwiftSolutions Portal'. Loads crypto-js 4.1.1 from cdnjs, spoofs Microsoft login CAPTCHA image from logincdn.msftauth.net. Cloudflare Analytics beacon blocked by CORS (preflight fail). DOM hash: f4825011633a7173c8e9e85a21aa74edac5ce534cc7810d51457d055048ad953."
+    },
+    {
+      "scan_id": "068cc0d3-e643-4415-a62c-c52e5eb9913e",
+      "worker": "WORKER-2",
+      "scanned_url": "https://[REDACTED-WORKER-2]/",
+      "scanned_at": "2026-05-13T17:15:20.030Z",
+      "verdict": {
+        "malicious": false,
+        "hasVerdicts": false,
+        "categories": [],
+        "tags": []
+      },
+      "response_size_bytes": 27507,
+      "tls": {
+        "subject": "[REDACTED-WORKER-2]",
+        "protocol": "TLS 1.3",
+        "cipher": "AES_256_GCM",
+        "valid_from": "2026-05-12T17:15:19.000Z",
+        "valid_to": "2027-05-12T17:15:19.000Z",
+        "issuer": ""
+      },
+      "resources_loaded": [
+        "https://[REDACTED-WORKER-2]/",
+        "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js",
+        "https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516",
+        "https://logincdn.msftauth.net/shared/5/images/solve_captcha_white_be191d6e17d0b842754c.png",
+        "https://[REDACTED-WORKER-2]/favicon.ico"
+      ],
+      "notes": "Worker 2 (base-page-rql6), first scan. Page title: 'SecureSolutions | Secure Access'. Same resource fingerprint as WORKER-1. No ei= parameter — accessed without victim email token. DOM hash: 5c9a3319ca473b283ea6fba4e6b999098c6ea782fb409f30460836f4ba0209c7. Compare with scan a6c3f4a3 for DOM hash evasion proof."
+    },
+    {
+      "scan_id": "a6c3f4a3-2a11-44e2-87b4-908e78a2cbc9",
+      "worker": "WORKER-2",
+      "scanned_url": "https://[REDACTED-WORKER-2]/",
+      "scanned_at": "2026-05-13T18:21:54.505Z",
+      "verdict": {
+        "malicious": false,
+        "hasVerdicts": false,
+        "categories": [],
+        "tags": []
+      },
+      "response_size_bytes": 27507,
+      "tls": {
+        "subject": "[REDACTED-WORKER-2]",
+        "protocol": "TLS 1.3",
+        "cipher": "AES_256_GCM",
+        "valid_from": "2026-05-12T18:21:54.000Z",
+        "valid_to": "2027-05-12T18:21:54.000Z",
+        "issuer": ""
+      },
+      "resources_loaded": [
+        "https://[REDACTED-WORKER-2]/",
+        "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js",
+        "https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516",
+        "https://logincdn.msftauth.net/shared/5/images/solve_captcha_white_be191d6e17d0b842754c.png",
+        "https://[REDACTED-WORKER-2]/favicon.ico"
+      ],
+      "notes": "Worker 2 (base-page-rql6), second scan. Page title: 'Welcome | Modern Secure Dynamics'. Identical URL and encoded byte size (27507) as scan 068cc0d3 but different DOM hash (dd9888e12663dd93590cc7d5e1ff3a60d94bd42d953d6cfd6043ddf3fbaad9e1) and different page title — confirms per-render DOM randomization / hash evasion. See dom_hash_evasion block."
+    }
+  ],
+  "dom_hash_evasion": {
+    "url": "https://[REDACTED-WORKER-2]/",
+    "scan_1_id": "068cc0d3-e643-4415-a62c-c52e5eb9913e",
+    "scan_1_time": "2026-05-13T17:15:20.030Z",
+    "scan_1_dom_hash": "5c9a3319ca473b283ea6fba4e6b999098c6ea782fb409f30460836f4ba0209c7",
+    "scan_1_title": "SecureSolutions | Secure Access",
+    "scan_2_id": "a6c3f4a3-2a11-44e2-87b4-908e78a2cbc9",
+    "scan_2_time": "2026-05-13T18:21:54.505Z",
+    "scan_2_dom_hash": "dd9888e12663dd93590cc7d5e1ff3a60d94bd42d953d6cfd6043ddf3fbaad9e1",
+    "scan_2_title": "Welcome | Modern Secure Dynamics",
+    "gap_seconds": 3994,
+    "encoded_response_bytes_both": 27507,
+    "note": "Same URL, same encoded byte size (27507 bytes) on both renders, but different DOM structure hash and different page title on every render. Confirmed via back-to-back Cloudflare Radar scans ~66 minutes apart. The Worker randomizes visible page content (title, branding text, layout tokens) client-side on each load, defeating static hash-based detection while keeping the phishing payload functionally identical."
+  }
+}
