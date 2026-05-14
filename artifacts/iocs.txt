@@ -1,0 +1,37 @@
+# IOCs: [REDACTED-CF-NAMESPACE] BEC Campaign, May 2026
+# Attacker identifiers redacted in published materials.
+# Full identifiers available to law enforcement on request.
+# All infrastructure confirmed taken down May 13, 2026.
+
+DOMAINS (attacker-controlled):
+  [REDACTED-WORKER-1]
+  [REDACTED-WORKER-2]
+  [REDACTED-C2-HOST]
+
+DOMAINS (third-party, likely compromised):
+  [REDACTED-THIRD-PARTY-HOST]/_csi/
+
+FALLBACK:
+  [REDACTED-FALLBACK-URL]
+
+ENCRYPTION:
+  Algorithm:      AES-CBC
+  Key derivation: SHA-256
+  Passphrase:     [REDACTED-AES-KEY]
+  IV:             First 16 bytes of payload
+  Encoding:       URL-safe base64
+
+IP:
+  172.67.202.245 (Cloudflare anycast, ASN 13335)
+
+TLS:
+  Cert issued:       2026-05-11
+  Age at discovery:  0 days
+
+DOM HASHES (same URL, one hour apart -- evasion proof):
+  5c9a3319ca473b283ea6fba4e6b999098c6ea782fb409f30460836f4ba0209c7
+  dd9888e12663dd93590cc7d5e1ff3a60d94bd42d953d6cfd6043ddf3fbaad9e1
+
+FILE HASHES:
+  phishing-kit-annotated.html:         [PENDING]
+  secondary-worker-annotated.html:     [PENDING]
